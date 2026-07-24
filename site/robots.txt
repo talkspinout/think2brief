@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://talkspinout.github.io/think2brief/sitemap.xml
