@@ -527,6 +527,133 @@ a {
   line-height: 1.75;
 }
 
+.product-views {
+  padding: 124px 0 140px;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.product-views-heading {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  align-items: end;
+  gap: 90px;
+}
+
+.product-views-heading h2 {
+  margin: 0;
+  font-size: clamp(34px, 4.5vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+}
+
+.product-views-heading p {
+  margin: 0 0 4px;
+  color: #b7c0c0;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.product-view-grid {
+  margin-top: 68px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.product-view-card {
+  min-width: 0;
+  margin: 0;
+}
+
+.product-view-card-wide {
+  grid-column: 1 / -1;
+}
+
+.product-view-media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border: 1px solid #40484a;
+  border-radius: 20px;
+  background: #f8f8f6;
+  box-shadow: 0 30px 74px rgba(0, 0, 0, 0.28);
+}
+
+.product-view-card-wide .product-view-media {
+  aspect-ratio: 16 / 9;
+}
+
+.product-view-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 240ms ease;
+}
+
+.product-view-media > span {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(22, 27, 29, 0.88);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 750;
+  backdrop-filter: blur(12px);
+}
+
+.product-view-media:hover img,
+.product-view-media:focus-visible img {
+  transform: scale(1.012);
+}
+
+.product-view-media:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 4px;
+}
+
+.product-view-card figcaption {
+  padding: 18px 2px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.product-view-card figcaption div {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.product-view-card figcaption span {
+  color: var(--teal);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.product-view-card figcaption h3 {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: -0.035em;
+}
+
+.product-view-card figcaption p {
+  max-width: 560px;
+  margin: 2px 0 0;
+  color: #aeb7b7;
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: right;
+}
+
 .workflow-section {
   padding: 120px 0 132px;
   background: #e9e8e3;
@@ -908,6 +1035,7 @@ a {
   }
 
   .principle-grid,
+  .product-views-heading,
   .workflow-heading,
   .privacy-callout {
     grid-template-columns: 1fr;
@@ -1046,6 +1174,7 @@ a {
 
   .principle-section,
   .feature-section,
+  .product-views,
   .workflow-section,
   .privacy-callout {
     padding-top: 82px;
@@ -1054,6 +1183,7 @@ a {
 
   .principle-grid h2,
   .feature-section > h2,
+  .product-views-heading h2,
   .workflow-heading h2,
   .privacy-callout h2,
   .final-cta h2 {
@@ -1083,6 +1213,31 @@ a {
 
   .feature-card h3 {
     margin-top: 36px;
+  }
+
+  .product-view-grid {
+    margin-top: 46px;
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .product-view-card-wide {
+    grid-column: auto;
+  }
+
+  .product-view-media,
+  .product-view-card-wide .product-view-media {
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+  }
+
+  .product-view-card figcaption {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .product-view-card figcaption p {
+    text-align: left;
   }
 
   .workflow-list {
