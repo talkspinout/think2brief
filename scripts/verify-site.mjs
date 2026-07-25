@@ -64,9 +64,13 @@ assert.match(home, /blank-board-start\.png/);
 assert.ok(home.indexOf("<figcaption>") < home.indexOf('src="./assets/product/work-board.png"'));
 
 assert.match(privacy, /시행일/);
-assert.match(privacy, /2026년 7월 24일/);
+assert.match(privacy, /2026년 7월 25일/);
 assert.match(privacy, /think2brief@gmail\.com/);
-assert.match(privacy, /unlimitedStorage/);
+// unlimitedStorage는 localStorage에는 적용되지 않아 실효가 없고, 실제로
+// 요청하는 권한도 아니므로(매니페스트에서 제거) 정책에서도 다시 등장하지
+// 않아야 한다.
+assert.doesNotMatch(privacy, /unlimitedStorage/);
+assert.match(privacy, /추가 Chrome 권한을 요청하지 않습니다/);
 assert.match(privacy, /개발자 서버 수집[\s\S]*없음/);
 assert.match(privacy, /제3자 전송·판매[\s\S]*없음/);
 assert.match(privacy, /Google Drive, Notion, LLM/);
