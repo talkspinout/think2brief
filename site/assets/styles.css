@@ -159,7 +159,6 @@ a {
 
 .hero h1,
 .principle-grid h2,
-.workflow-heading h2,
 .final-cta h2,
 .policy-summary h1 {
   margin: 0;
@@ -449,8 +448,6 @@ a {
 }
 
 .principle-grid h2,
-.workflow-heading h2,
-.features-section > h2,
 .final-cta h2 {
   font-size: clamp(34px, 4.5vw, 58px);
 }
@@ -515,10 +512,6 @@ a {
   margin: 0;
 }
 
-.product-view-card-wide {
-  grid-column: 1 / -1;
-}
-
 .product-view-media {
   position: relative;
   display: block;
@@ -572,88 +565,15 @@ a {
   text-align: right;
 }
 
-.workflow-section {
-  padding: 96px 0 104px;
-  background: #e9e8e3;
-}
-
-.workflow-heading {
-  display: grid;
-  grid-template-columns: 1fr 0.8fr;
-  gap: 90px;
-  align-items: end;
-}
-
-.workflow-heading p {
-  margin: 0 0 4px;
-  color: #61696b;
-  font-size: 16px;
-  line-height: 1.85;
-}
-
-.workflow-list {
-  margin: 80px 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  list-style: none;
-}
-
-.workflow-list li {
-  min-height: 220px;
-  padding: 26px 34px 30px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-top: 1px solid #bfc4c1;
-  border-right: 1px solid #bfc4c1;
-}
-
-.workflow-list li + li {
-  padding-left: 34px;
-}
-
-.workflow-list li:last-child {
-  border-right: 0;
-}
-
-.workflow-list > li > span {
-  width: 32px;
-  height: 32px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--ink);
-  color: var(--white);
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.workflow-list h3 {
-  margin: 0 0 10px;
-  font-size: 20px;
-}
-
-.workflow-list p {
-  margin: 0;
-  color: #646c6d;
-  font-size: 14px;
-  line-height: 1.75;
-}
-
 .features-section {
-  padding: 96px 0;
-}
-
-.features-section > h2 {
-  max-width: 640px;
+  padding: 56px 0;
 }
 
 .feature-strip {
-  margin-top: 56px;
+  margin-top: 28px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 28px;
 }
 
 .feature-item {
@@ -661,74 +581,60 @@ a {
 }
 
 .feature-icon {
-  width: 56px;
-  height: 56px;
+  width: 36px;
+  height: 36px;
   display: grid;
   place-items: center;
-  border-radius: 16px;
+  border-radius: 11px;
   background: var(--ink);
 }
 
 .icon-lock {
-  width: 20px;
-  height: 24px;
-  border: 2.5px solid var(--teal);
-  border-radius: 4px 4px 8px 8px;
+  width: 13px;
+  height: 16px;
+  border: 2px solid var(--teal);
+  border-radius: 3px 3px 6px 6px;
   position: relative;
 }
 
 .icon-lock::before {
   content: "";
-  width: 12px;
-  height: 10px;
+  width: 8px;
+  height: 7px;
   position: absolute;
-  top: -10px;
-  left: 1.5px;
-  border: 2.5px solid var(--teal);
+  top: -7px;
+  left: 1px;
+  border: 2px solid var(--teal);
   border-bottom: 0;
-  border-radius: 8px 8px 0 0;
+  border-radius: 6px 6px 0 0;
 }
 
 .icon-glyph {
   color: var(--teal);
-  font-size: 22px;
+  font-size: 15px;
   font-weight: 800;
 }
 
 .feature-item h3 {
-  margin: 18px 0 0;
-  font-size: 17px;
-  letter-spacing: -0.03em;
+  margin: 14px 0 0;
+  font-size: 15px;
+  letter-spacing: -0.02em;
 }
 
 .feature-item p {
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   color: #60686a;
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 13px;
+  line-height: 1.65;
 }
 
 .feature-item a {
-  margin-top: 14px;
+  margin-top: 10px;
   display: inline-flex;
-  gap: 10px;
+  gap: 8px;
   color: var(--teal-dark);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
-}
-
-.workflow-media {
-  margin: 48px 0 0;
-}
-
-.workflow-media-frame {
-  aspect-ratio: 1280 / 245;
-}
-
-.workflow-media figcaption {
-  margin-top: 14px;
-  color: #61696b;
-  font-size: 13px;
 }
 
 .final-cta {
@@ -986,8 +892,7 @@ a {
   }
 
   .principle-grid,
-  .product-views-heading,
-  .workflow-heading {
+  .product-views-heading {
     grid-template-columns: 1fr;
     gap: 38px;
   }
@@ -999,20 +904,6 @@ a {
   .feature-strip {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-  }
-
-  .workflow-list {
-    grid-template-columns: 1fr;
-  }
-
-  .workflow-list li,
-  .workflow-list li + li {
-    min-height: 0;
-    padding: 28px 0;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 24px;
-    border-right: 0;
   }
 
   .final-cta-inner {
@@ -1107,17 +998,18 @@ a {
   }
 
   .principle-section,
-  .product-views,
-  .workflow-section,
-  .features-section {
+  .product-views {
     padding-top: 64px;
     padding-bottom: 72px;
   }
 
+  .features-section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
   .principle-grid h2,
   .product-views-heading h2,
-  .workflow-heading h2,
-  .features-section > h2,
   .final-cta h2 {
     font-size: 36px;
   }
@@ -1136,20 +1028,8 @@ a {
     gap: 42px;
   }
 
-  .product-view-card-wide {
-    grid-column: auto;
-  }
-
   .product-view-media {
     border-radius: 14px;
-  }
-
-  .workflow-media-frame {
-    aspect-ratio: 4 / 3;
-  }
-
-  .workflow-media-frame img {
-    object-position: 84% center;
   }
 
   .product-view-card figcaption {
@@ -1159,10 +1039,6 @@ a {
 
   .product-view-card figcaption p {
     text-align: left;
-  }
-
-  .workflow-list {
-    margin-top: 48px;
   }
 
   .feature-strip {
