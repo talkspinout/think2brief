@@ -160,7 +160,6 @@ a {
 .hero h1,
 .principle-grid h2,
 .workflow-heading h2,
-.privacy-callout h2,
 .final-cta h2,
 .policy-summary h1 {
   margin: 0;
@@ -438,7 +437,7 @@ a {
 }
 
 .principle-section {
-  padding: 96px 0;
+  padding: 96px 0 64px;
   background: var(--ink);
   color: var(--white);
 }
@@ -451,7 +450,7 @@ a {
 
 .principle-grid h2,
 .workflow-heading h2,
-.privacy-callout h2,
+.features-section > h2,
 .final-cta h2 {
   font-size: clamp(34px, 4.5vw, 58px);
 }
@@ -478,7 +477,7 @@ a {
 }
 
 .product-views {
-  padding: 96px 0 104px;
+  padding: 64px 0 104px;
   background: var(--ink);
   color: var(--white);
 }
@@ -538,7 +537,7 @@ a {
 }
 
 .product-view-card figcaption {
-  padding: 18px 2px 0;
+  padding: 0 2px 16px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -642,61 +641,94 @@ a {
   line-height: 1.75;
 }
 
-.privacy-callout {
+.features-section {
   padding: 96px 0;
-  display: grid;
-  grid-template-columns: 90px 1fr 0.85fr;
-  align-items: start;
-  gap: 52px;
 }
 
-.privacy-icon {
-  width: 74px;
-  height: 74px;
+.features-section > h2 {
+  max-width: 640px;
+}
+
+.feature-strip {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.feature-item {
+  min-width: 0;
+}
+
+.feature-icon {
+  width: 56px;
+  height: 56px;
   display: grid;
   place-items: center;
-  border-radius: 22px;
+  border-radius: 16px;
   background: var(--ink);
 }
 
-.privacy-icon span {
-  width: 28px;
-  height: 34px;
-  border: 3px solid var(--teal);
-  border-radius: 5px 5px 10px 10px;
+.icon-lock {
+  width: 20px;
+  height: 24px;
+  border: 2.5px solid var(--teal);
+  border-radius: 4px 4px 8px 8px;
   position: relative;
 }
 
-.privacy-icon span::before {
+.icon-lock::before {
   content: "";
-  width: 17px;
-  height: 14px;
+  width: 12px;
+  height: 10px;
   position: absolute;
-  top: -14px;
-  left: 2px;
-  border: 3px solid var(--teal);
+  top: -10px;
+  left: 1.5px;
+  border: 2.5px solid var(--teal);
   border-bottom: 0;
-  border-radius: 10px 10px 0 0;
+  border-radius: 8px 8px 0 0;
 }
 
-.privacy-copy {
-  padding-top: 36px;
-}
-
-.privacy-copy p {
-  margin: 0;
-  color: #60686a;
-  font-size: 15px;
-  line-height: 1.85;
-}
-
-.privacy-copy a {
-  margin-top: 26px;
-  display: inline-flex;
-  gap: 18px;
-  color: var(--teal-dark);
-  font-size: 14px;
+.icon-glyph {
+  color: var(--teal);
+  font-size: 22px;
   font-weight: 800;
+}
+
+.feature-item h3 {
+  margin: 18px 0 0;
+  font-size: 17px;
+  letter-spacing: -0.03em;
+}
+
+.feature-item p {
+  margin: 8px 0 0;
+  color: #60686a;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.feature-item a {
+  margin-top: 14px;
+  display: inline-flex;
+  gap: 10px;
+  color: var(--teal-dark);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.workflow-media {
+  margin: 48px 0 0;
+}
+
+.workflow-media-frame {
+  aspect-ratio: 1280 / 245;
+}
+
+.workflow-media figcaption {
+  margin-top: 14px;
+  color: #61696b;
+  font-size: 13px;
 }
 
 .final-cta {
@@ -955,15 +987,18 @@ a {
 
   .principle-grid,
   .product-views-heading,
-  .workflow-heading,
-  .privacy-callout {
+  .workflow-heading {
     grid-template-columns: 1fr;
     gap: 38px;
   }
 
-  .principle-copy,
-  .privacy-copy {
+  .principle-copy {
     padding-top: 0;
+  }
+
+  .feature-strip {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
 
   .workflow-list {
@@ -978,14 +1013,6 @@ a {
     justify-content: flex-start;
     gap: 24px;
     border-right: 0;
-  }
-
-  .privacy-callout {
-    grid-template-columns: 80px 1fr;
-  }
-
-  .privacy-copy {
-    grid-column: 2;
   }
 
   .final-cta-inner {
@@ -1082,7 +1109,7 @@ a {
   .principle-section,
   .product-views,
   .workflow-section,
-  .privacy-callout {
+  .features-section {
     padding-top: 64px;
     padding-bottom: 72px;
   }
@@ -1090,7 +1117,7 @@ a {
   .principle-grid h2,
   .product-views-heading h2,
   .workflow-heading h2,
-  .privacy-callout h2,
+  .features-section > h2,
   .final-cta h2 {
     font-size: 36px;
   }
@@ -1117,6 +1144,14 @@ a {
     border-radius: 14px;
   }
 
+  .workflow-media-frame {
+    aspect-ratio: 4 / 3;
+  }
+
+  .workflow-media-frame img {
+    object-position: 84% center;
+  }
+
   .product-view-card figcaption {
     flex-direction: column;
     gap: 8px;
@@ -1130,12 +1165,9 @@ a {
     margin-top: 48px;
   }
 
-  .privacy-callout {
+  .feature-strip {
     grid-template-columns: 1fr;
-  }
-
-  .privacy-copy {
-    grid-column: auto;
+    gap: 32px;
   }
 
   .final-cta {

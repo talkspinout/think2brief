@@ -18,6 +18,7 @@ for (const path of [
   "site/assets/product/work-board.png",
   "site/assets/product/logic-review.png",
   "site/assets/product/final-brief.png",
+  "site/assets/product/blank-board-start.png",
   "site/404.html",
   "site/robots.txt",
   "site/sitemap.xml",
@@ -46,7 +47,21 @@ assert.doesNotMatch(home, /FOUR WORKING VIEWS/);
 // 지나치게 비장한 카피는 더 담백한 문구로 교체했다.
 assert.doesNotMatch(home, /좋은 브리프는 생각의 흔적을 남깁니다/);
 assert.doesNotMatch(home, /당신의 브리프는[\s\S]{0,20}당신의 브라우저에 머뭅니다/);
-assert.match(home, /이 브라우저에만 저장됩니다/);
+assert.match(home, /이 브라우저에만 저장되고/);
+
+// "부가 기능" 3항목이 같은 비중으로 노출되어야 한다 (로컬 저장이 단독으로
+// 강조되고 나머지가 배지로 딸려 붙는 구조로 되돌아가지 않도록 고정).
+assert.match(home, /feature-strip/);
+assert.match(home, /Markdown·PDF 내보내기/);
+assert.match(home, /현재 모든 기능 무료/);
+assert.doesNotMatch(home, /trust-list" aria-label="추가 제품 특성"/);
+
+// 빈 보드 시작 화면도 스크린샷으로 보여줘야 한다.
+assert.match(home, /blank-board-start\.png/);
+
+// 화면 캡션은 이미지보다 먼저 나와야 한다(이미지 먼저 보여주고 나중에
+// 설명하는 순서로 되돌아가지 않도록 고정).
+assert.ok(home.indexOf("<figcaption>") < home.indexOf('src="./assets/product/work-board.png"'));
 
 assert.match(privacy, /시행일/);
 assert.match(privacy, /2026년 7월 24일/);
