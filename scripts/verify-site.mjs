@@ -15,6 +15,9 @@ const [home, privacy, styles, workflow] = await Promise.all([
 
 for (const path of [
   "site/assets/icon128.png",
+  "site/assets/product/work-board.png",
+  "site/assets/product/logic-review.png",
+  "site/assets/product/final-brief.png",
   "site/404.html",
   "site/robots.txt",
   "site/sitemap.xml",
@@ -29,6 +32,21 @@ assert.match(home, /Chrome 웹스토어 출시 준비 중/);
 assert.match(home, /href="\.\/privacy\/"/);
 assert.match(home, /회원가입 없음/);
 assert.doesNotMatch(home, /Google Drive 연결|Notion 연결|지금 설치/);
+
+// 제품 화면 3장은 실제 앱 스크린샷(PNG)이어야 하며, 새 창으로 열리는
+// 원본 보기 링크 없이 페이지 안에서 바로 보여야 한다.
+assert.doesNotMatch(home, /\.svg"/);
+assert.doesNotMatch(home, /target="_blank"/);
+assert.doesNotMatch(home, /전체 화면 보기/);
+
+// "기능 4카드" 섹션은 스크린샷 섹션과 내용이 중복되어 제거했다 — 되살아나지
+// 않도록 고정한다.
+assert.doesNotMatch(home, /FOUR WORKING VIEWS/);
+
+// 지나치게 비장한 카피는 더 담백한 문구로 교체했다.
+assert.doesNotMatch(home, /좋은 브리프는 생각의 흔적을 남깁니다/);
+assert.doesNotMatch(home, /당신의 브리프는[\s\S]{0,20}당신의 브라우저에 머뭅니다/);
+assert.match(home, /이 브라우저에만 저장됩니다/);
 
 assert.match(privacy, /시행일/);
 assert.match(privacy, /2026년 7월 24일/);
