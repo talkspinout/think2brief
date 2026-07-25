@@ -155,6 +155,10 @@
 
           <div class="product-view-grid">
             <figure class="product-view-card product-view-card-wide">
+              <figcaption>
+                <div><span>01</span><h3>작업 보드</h3></div>
+                <p>질문에 답하며 판단·근거·활동·측정 카드를 섹션별로 쌓습니다.</p>
+              </figcaption>
               <div class="product-view-media" style="aspect-ratio: 1280 / 760">
                 <img
                   src="./assets/product/work-board.png"
@@ -165,13 +169,13 @@
                   decoding="async"
                 />
               </div>
-              <figcaption>
-                <div><span>01</span><h3>작업 보드</h3></div>
-                <p>질문에 답하며 판단·근거·활동·측정 카드를 섹션별로 쌓습니다.</p>
-              </figcaption>
             </figure>
 
             <figure class="product-view-card">
+              <figcaption>
+                <div><span>02</span><h3>연결 점검</h3></div>
+                <p>논리의 정답이 아니라 작성한 목표·근거·전략·활동이 끊기지 않는지 확인합니다.</p>
+              </figcaption>
               <div class="product-view-media" style="aspect-ratio: 1280 / 720">
                 <img
                   src="./assets/product/logic-review.png"
@@ -182,13 +186,13 @@
                   decoding="async"
                 />
               </div>
-              <figcaption>
-                <div><span>02</span><h3>연결 점검</h3></div>
-                <p>논리의 정답이 아니라 작성한 목표·근거·전략·활동이 끊기지 않는지 확인합니다.</p>
-              </figcaption>
             </figure>
 
             <figure class="product-view-card">
+              <figcaption>
+                <div><span>03</span><h3>최종 브리프</h3></div>
+                <p>브리프에 포함한 카드만 모아 검토하고 Markdown 또는 PDF로 정리합니다.</p>
+              </figcaption>
               <div class="product-view-media" style="aspect-ratio: 1280 / 900">
                 <img
                   src="./assets/product/final-brief.png"
@@ -199,10 +203,6 @@
                   decoding="async"
                 />
               </div>
-              <figcaption>
-                <div><span>03</span><h3>최종 브리프</h3></div>
-                <p>브리프에 포함한 카드만 모아 검토하고 Markdown 또는 PDF로 정리합니다.</p>
-              </figcaption>
             </figure>
           </div>
         </div>
@@ -218,6 +218,21 @@
               구조를 선택하고, 자신의 판단을 채운 뒤, 연결을 점검합니다.
             </p>
           </div>
+
+          <figure class="workflow-media">
+            <div class="product-view-media workflow-media-frame">
+              <img
+                src="./assets/product/blank-board-start.png"
+                alt="전략 브리프·전략 전개안·실행기획안·빈 보드 중 빈 보드를 선택한 Think2Brief 시작 화면"
+                width="1280"
+                height="245"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption>정해진 템플릿이 없어도 빈 보드로 바로 시작할 수 있습니다.</figcaption>
+          </figure>
+
           <ol class="workflow-list">
             <li>
               <span>1</span>
@@ -244,25 +259,26 @@
         </div>
       </section>
 
-      <section class="privacy-callout shell">
-        <div class="privacy-icon" aria-hidden="true">
-          <span></span>
-        </div>
-        <div>
-          <p class="section-kicker">LOCAL FIRST</p>
-          <h2>작성한 브리프는<br />이 브라우저에만 저장됩니다.</h2>
-        </div>
-        <div class="privacy-copy">
-          <p>
-            현재 버전은 계정, 분석 도구, 광고 추적 또는 외부 서버를
-            사용하지 않습니다. 작성한 프로젝트는 Chrome 확장 프로그램의
-            로컬 저장소에 저장되며 개발자에게 전송되지 않습니다.
-          </p>
-          <ul class="trust-list" aria-label="추가 제품 특성">
-            <li><span aria-hidden="true">✓</span> Markdown·PDF 내보내기</li>
-            <li><span aria-hidden="true">✓</span> 현재 모든 기능 무료</li>
-          </ul>
-          <a href="./privacy/">개인정보 처리방침 전문 보기 <span>→</span></a>
+      <section class="features-section shell" aria-labelledby="features-title">
+        <p class="section-kicker">MORE TO KNOW</p>
+        <h2 id="features-title">지금 바로 쓸 수 있는 것들</h2>
+        <div class="feature-strip">
+          <article class="feature-item">
+            <div class="feature-icon" aria-hidden="true"><span class="icon-lock"></span></div>
+            <h3>로컬 저장</h3>
+            <p>계정 없이 이 브라우저에만 저장되고 개발자에게 전송되지 않습니다.</p>
+            <a href="./privacy/">개인정보 처리방침 보기 <span>→</span></a>
+          </article>
+          <article class="feature-item">
+            <div class="feature-icon" aria-hidden="true"><span class="icon-glyph">↓</span></div>
+            <h3>Markdown·PDF 내보내기</h3>
+            <p>완성한 브리프를 문서나 인쇄물로 바로 내보낼 수 있습니다.</p>
+          </article>
+          <article class="feature-item">
+            <div class="feature-icon" aria-hidden="true"><span class="icon-glyph">✓</span></div>
+            <h3>현재 모든 기능 무료</h3>
+            <p>회원가입이나 결제 없이 모든 기능을 사용할 수 있습니다.</p>
+          </article>
         </div>
       </section>
 
