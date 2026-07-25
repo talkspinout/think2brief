@@ -47,7 +47,22 @@ assert.doesNotMatch(home, /FOUR WORKING VIEWS/);
 // 지나치게 비장한 카피는 더 담백한 문구로 교체했다.
 assert.doesNotMatch(home, /좋은 브리프는 생각의 흔적을 남깁니다/);
 assert.doesNotMatch(home, /당신의 브리프는[\s\S]{0,20}당신의 브라우저에 머뭅니다/);
-assert.match(home, /이 브라우저에만 저장되고/);
+assert.doesNotMatch(home, /생각을 브리프로, 지금 바로 정리해 보세요/);
+assert.match(home, /흩어진 생각을, 지금 브리프로 정리해 보세요/);
+assert.match(home, /브라우저에만 저장되고/);
+assert.match(home, /자신만의[\s\S]{0,20}논리로 이어지는지 확인합니다/);
+
+// PRODUCT IN ACTION과 HOW IT WORKS는 내용이 겹쳐 하나로 합쳤다 —
+// 별개 섹션으로 되돌아가지 않도록 고정한다.
+assert.doesNotMatch(home, /PRODUCT IN ACTION/);
+assert.equal((home.match(/HOW IT WORKS/g) || []).length, 1);
+assert.match(home, /카드 한 장에서[\s\S]{0,20}네 단계입니다/);
+for (const step of ["질문 구조 선택", "판단과 근거 기록", "연결 확인", "최종 브리프 완성"]) {
+  assert.match(home, new RegExp(step));
+}
+
+// MORE TO KNOW는 큰 제목 없이 가벼운 보조 정보로만 노출되어야 한다.
+assert.doesNotMatch(home, /id="features-title"/);
 
 // "부가 기능" 3항목이 같은 비중으로 노출되어야 한다 (로컬 저장이 단독으로
 // 강조되고 나머지가 배지로 딸려 붙는 구조로 되돌아가지 않도록 고정).
