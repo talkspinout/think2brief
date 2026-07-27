@@ -19,8 +19,8 @@ Official product and privacy site for **Think2Brief — Marketing**.
 npm run verify
 ```
 
-The Chrome Web Store CTA intentionally remains in a pre-release state until the
-public listing URL exists. Product copy must not describe integrations, accounts,
+The extension is live on the Chrome Web Store; the hero and final CTAs link
+directly to the listing. Product copy must not describe integrations, accounts,
 analytics, or paid features that are not present in the released extension.
 
 ## License
