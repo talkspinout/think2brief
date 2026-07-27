@@ -29,10 +29,12 @@ for (const path of [
 }
 
 assert.match(home, /Think2Brief — Marketing/);
-assert.match(home, /Chrome 웹스토어 출시 준비 중/);
+assert.match(home, /href="https:\/\/chromewebstore\.google\.com\/detail\/Think2Brief/);
+assert.match(home, /Chrome 웹스토어에서 설치하기/);
 assert.match(home, /href="\.\/privacy\/"/);
 assert.match(home, /회원가입 없음/);
 assert.doesNotMatch(home, /Google Drive 연결|Notion 연결|지금 설치/);
+assert.doesNotMatch(home, /출시 준비 중/);
 
 // 제품 화면 3장은 실제 앱 스크린샷(PNG)이어야 하며, 새 창으로 열리는
 // 원본 보기 링크 없이 페이지 안에서 바로 보여야 한다.
