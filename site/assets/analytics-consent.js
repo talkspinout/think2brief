@@ -41,7 +41,8 @@
     const path = location.pathname;
     if (path.includes("/en/privacy/") || path.includes("/privacy/")) return location.href;
     if (path.includes("/en/")) return "../en/privacy/";
-    return path.endsWith("/404.html") ? "./privacy/" : "./privacy/";
+    if (path.includes("/updates/")) return "../privacy/";
+    return "./privacy/";
   };
 
   const consentCommand = (state) => {
