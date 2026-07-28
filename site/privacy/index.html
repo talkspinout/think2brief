@@ -73,11 +73,11 @@
         <dl>
           <div>
             <dt data-i18n="summary.effectiveDateLabel">시행일</dt>
-            <dd data-i18n="summary.effectiveDateValue">2026년 7월 25일</dd>
+            <dd data-i18n="summary.effectiveDateValue">2026년 7월 28일</dd>
           </div>
           <div>
             <dt data-i18n="summary.versionLabel">정책 버전</dt>
-            <dd>1.1</dd>
+            <dd>1.2</dd>
           </div>
           <div>
             <dt data-i18n="summary.contactLabel">문의</dt>
@@ -90,10 +90,12 @@
         <div class="policy-lead">
           <strong data-i18n="lead.title">핵심 요약</strong>
           <p data-i18n="lead.body">
-            현재 Think2Brief — Marketing은 계정, 외부 서버, 분석 도구,
-            광고 추적을 사용하지 않습니다. 사용자가 작성한 브리프와
-            프로젝트 데이터는 사용자의 Chrome 브라우저 안에 저장되며
-            개발자에게 전송되지 않습니다.
+            Chrome 확장 프로그램은 계정, 외부 서버, 분석 도구, 광고 추적을
+            사용하지 않습니다. 사용자가 작성한 브리프와 프로젝트 데이터는
+            사용자의 Chrome 브라우저 안에 저장되며 개발자에게 전송되지
+            않습니다. 이 제품 소개 웹사이트는 방문 통계를 위해 Google
+            태그 관리자와 Google 애널리틱스 4를 사용합니다 — 자세한
+            내용은 8번 항목을 확인하세요.
           </p>
         </div>
 
@@ -157,8 +159,10 @@
             <div><b data-i18n="s04.fact4Label">회원 계정</b><span data-i18n="s04.fact4Value">없음</span></div>
           </div>
           <p data-i18n="s04.body">
-            현재 버전은 Google Drive, Notion, LLM API 또는 기타 외부
-            데이터 서비스를 호출하지 않습니다. 개발자는 확장 프로그램에
+            이 표는 Chrome 확장 프로그램 기준입니다. 제품 웹사이트의
+            분석 도구 사용은 8번 항목을 확인하세요. 현재 버전은
+            Google Drive, Notion, LLM API 또는 기타 외부 데이터
+            서비스를 호출하지 않습니다. 개발자는 확장 프로그램에
             입력된 프로젝트를 수집, 열람, 판매 또는 제3자에게 제공하지
             않습니다.
           </p>
@@ -210,9 +214,29 @@
             기술 정보를 처리할 수 있으며, 이는
             <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">
               GitHub 개인정보 보호정책
-            </a>의 적용을 받습니다. 확장 프로그램은 이 웹사이트를 열 때
-            프로젝트 내용이나 고유 프로젝트 식별자를 URL에 포함하지
+            </a>의 적용을 받습니다.
+          </p>
+          <p data-i18n="s08.analytics">
+            이 웹사이트는 방문 통계를 확인하고 사이트를 개선하기 위해
+            <a href="https://policies.google.com/technologies/managing">Google 태그 관리자</a>를
+            통해 Google 애널리틱스 4를 사용합니다. 이 과정에서 방문 페이지,
+            기능 이용 이벤트, 기기·브라우저 정보, IP 주소에서 산출된 대략적인
+            지역, 쿠키 또는 유사 식별자가 처리될 수 있습니다. 사용자가 확장
+            프로그램에 작성한 프로젝트·카드·브리프 내용은 웹사이트 분석
+            정보에 포함되지 않습니다. 수집된 정보는 Google로 전송되어
+            <a href="https://policies.google.com/privacy">Google 개인정보 보호정책</a>의
+            적용을 받습니다. 브라우저의 쿠키 설정 또는 Google 애널리틱스
+            차단 확장 프로그램을 통해 수집을 제한할 수 있습니다. 최초 방문
+            시 표시되는 동의 화면에서 분석을 거부할 수 있으며, 페이지
+            하단의 ‘분석 설정’에서 언제든 선택을 변경할 수 있습니다. 동의
+            전에는 Google 태그 관리자와 Google 애널리틱스를 불러오지
             않습니다.
+          </p>
+          <p data-i18n="s08.appSeparate">
+            Chrome 확장 프로그램 자체는 이 웹사이트와 별개로 동작하며,
+            태그 관리자를 포함하지 않고 어떤 분석 도구도 사용하지
+            않습니다. 확장 프로그램은 이 웹사이트를 열 때 프로젝트 내용이나
+            고유 프로젝트 식별자를 URL에 포함하지 않습니다.
           </p>
         </section>
 
@@ -253,5 +277,6 @@
 
     <script src="../assets/i18n.js"></script>
     <script type="module" src="../assets/i18n-privacy.js"></script>
+    <script src="../assets/analytics-consent.js"></script>
   </body>
 </html>
