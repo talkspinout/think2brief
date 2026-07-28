@@ -26,11 +26,20 @@ built-in "F&B Brand Social Channel Refresh" example
    committed here to avoid bundling a duplicate copy of the Pretendard font
    and a cross-repo build dependency into this repository).
 
-**Gotcha**: size the browser-mockup frame to the screenshot's own scaled
+**Gotcha 1**: size the browser-mockup frame to the screenshot's own scaled
 height (`width: 100%; height: auto` on the image, frame sized by content) —
 don't force a fixed frame height. Each step's source screenshot has a
 different aspect ratio, so a fixed height either crops the image or leaves
 dead white space below it depending on the step.
+
+**Gotcha 2**: capture *enough* content, not just whatever the first
+convenient crop point is. The frame is 760px wide inside the 1280×800 card,
+so the tallest a screenshot can be before the frame overflows the canvas is
+about 720px — meaning capture the app at roughly 1280×1200 (not, say,
+1280×650) so the scaled-down frame actually fills most of the card instead
+of floating small and empty in the middle. Pick the clip height by looking
+at the full page first and cutting at a clean section/card boundary near
+that ~1200px mark, not an arbitrary round number.
 
 Update these whenever the extension's English copy or the example content
 changes enough that the screenshots would look stale next to the real
