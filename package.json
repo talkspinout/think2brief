@@ -2,7 +2,12 @@
   "name": "think2brief-site",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "verify": "node scripts/verify-site.mjs"
+    "build:en": "node scripts/build-en.mjs",
+    "verify": "npm run build:en && node scripts/verify-site.mjs"
+  },
+  "dependencies": {
+    "linkedom": "^0.18.13"
   }
 }

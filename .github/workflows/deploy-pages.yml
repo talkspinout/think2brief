@@ -19,6 +19,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build English snapshot
+        run: npm run build:en
+
       - name: Verify site
         run: node scripts/verify-site.mjs
 
