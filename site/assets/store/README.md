@@ -26,6 +26,12 @@ built-in "F&B Brand Social Channel Refresh" example
    committed here to avoid bundling a duplicate copy of the Pretendard font
    and a cross-repo build dependency into this repository).
 
+**Gotcha**: size the browser-mockup frame to the screenshot's own scaled
+height (`width: 100%; height: auto` on the image, frame sized by content) —
+don't force a fixed frame height. Each step's source screenshot has a
+different aspect ratio, so a fixed height either crops the image or leaves
+dead white space below it depending on the step.
+
 Update these whenever the extension's English copy or the example content
 changes enough that the screenshots would look stale next to the real
 product.
