@@ -72,6 +72,14 @@ const rebaseAssetPaths = (document) => {
   });
 };
 
+// /updates/ has no English snapshot (site/en/updates/ doesn't exist), unlike
+// /privacy/ which is mirrored under site/en/privacy/. Left alone, the source
+// page's "./updates/" link would resolve inside site/en/ and 404 — point it
+// back at the shared, Korean-only updates page instead.
+const redirectUnmirroredPages = (document) => {
+  document.querySelectorAll('a[href="./updates/"]').forEach((el) => el.setAttribute("href", "../updates/"));
+};
+
 const stripToggleChrome = (document, koUrl) => {
   document.getElementById("lang-banner")?.remove();
 
@@ -124,6 +132,7 @@ for (const page of PAGES) {
 
   applyDictionary(document, page.dict);
   rebaseAssetPaths(document);
+  redirectUnmirroredPages(document);
   stripToggleChrome(document, page.koUrl);
   setCanonicalAndLocale(document, page);
   stripBuildArtifacts(document);

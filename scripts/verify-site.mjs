@@ -195,14 +195,13 @@ assert.match(i18nPrivacy, /Project, card, and brief content entered in the Chrom
 assert.match(i18nPrivacy, /not loaded before you consent/, "i18n-privacy: consent-first loading is unclear");
 assert.match(i18nPrivacy, /operates separately from this website/, "i18n-privacy: missing the extension/website separation statement");
 
-// 업데이트 노트는 구조만 먼저 만든 것으로 합의했다 — 웹스토어 심사 전까지는
-// 검색 노출·sitemap·메인 내비게이션에 올리지 않는다. 이 결정이 조용히
-// 되돌아가지 않도록 고정해 둔다. 실제로 공개할 때는 이 세 가지 조건을
-// 함께 걷어내야 한다.
-assert.match(updates, /<meta name="robots" content="noindex" \/>/);
-assert.doesNotMatch(sitemap, /\/updates\//);
-assert.doesNotMatch(home, /href="\.\/updates\/"/);
-assert.doesNotMatch(privacy, /href="\.\.\/updates\/"/);
+// Chrome 웹스토어 심사가 끝난 뒤 업데이트 노트를 공개하기로 했다 —
+// noindex를 걷어내고 sitemap·메인 내비게이션에 올렸다. 이 상태가 조용히
+// 되돌아가지 않도록 고정해 둔다.
+assert.doesNotMatch(updates, /<meta name="robots" content="noindex" \/>/, "updates: should be indexable now that it's published");
+assert.match(sitemap, /\/updates\//, "sitemap: missing the updates page");
+assert.match(home, /href="\.\/updates\/"/, "home: missing the updates nav link");
+assert.match(privacy, /href="\.\.\/updates\/"/, "privacy: missing the updates nav link");
 
 // <title>과 description/OG meta도 토글 대상이다. 크롤러 미리보기는 JS를
 // 실행하지 않으므로 이 3장(home/privacy/updates)의 원문 자체는 계속
@@ -232,6 +231,13 @@ for (const [label, page, base] of [["en/home", enHome, "https://talkspinout.gith
 assert.match(enHome, /Install from the Chrome Web Store/);
 assert.match(enHome, /product\/blank-board-start-en\.png/);
 assert.match(enPrivacy, /Chrome extension\.<\/p>|Chrome extension\./);
+
+// /updates/ has no English snapshot (unlike /privacy/, which is mirrored
+// under site/en/privacy/) — a naive path rebase would leave the nav link
+// pointing at the nonexistent site/en/updates/. Lock in the redirect back
+// to the shared, Korean-only updates page.
+assert.match(enHome, /href="\.\.\/updates\/"/, "en/home: updates link must point out of /en/ to the shared page");
+assert.doesNotMatch(enHome, /href="\.\/updates\/"/, "en/home: updates link must not resolve inside /en/");
 
 // KO 원본과 EN 스냅샷은 서로 같은 hreflang 대체 링크 세트를 들고 있어야
 // 한다 — 한쪽만 갱신되고 잊히는 걸 막기 위한 고정.
