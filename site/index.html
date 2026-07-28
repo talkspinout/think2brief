@@ -6,20 +6,29 @@
     <meta name="theme-color" content="#161b1d" />
     <meta
       name="description"
+      data-i18n-attr-content="meta.description"
       content="Think2Brief — Marketing은 목표·근거·전략·활동의 연결을 점검하고 최종 브리프로 정리하는 로컬 우선 Chrome 확장 프로그램입니다."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Think2Brief — Marketing" />
+    <meta property="og:title" data-i18n-attr-content="meta.ogTitle" content="Think2Brief — Marketing" />
     <meta
       property="og:description"
+      data-i18n-attr-content="meta.ogDescription"
       content="흩어진 생각을, 끝까지 이어지는 브리프로."
     />
     <meta property="og:url" content="https://talkspinout.github.io/think2brief/" />
     <meta property="og:locale" content="ko_KR" />
+    <!--
+      og:locale, canonical, and this document's server-rendered Korean text are
+      intentionally left untouched by the language toggle: crawlers and social
+      unfurlers don't execute JS, so a shared link's preview always reflects
+      this raw HTML. Fixing that for real needs a genuine /en/ URL (a static
+      snapshot or a separate build target) — out of scope for the toggle.
+    -->
     <link rel="canonical" href="https://talkspinout.github.io/think2brief/" />
     <link rel="icon" type="image/png" href="./assets/icon128.png" />
     <link rel="stylesheet" href="./assets/styles.css" />
-    <title>Think2Brief — Marketing</title>
+    <title data-i18n="meta.title">Think2Brief — Marketing</title>
   </head>
   <body>
     <a class="skip-link" href="#main" data-i18n="skip-link">본문으로 건너뛰기</a>
@@ -181,6 +190,7 @@
               <div class="product-view-media" style="aspect-ratio: 1280 / 650">
                 <img
                   src="./assets/product/blank-board-start.png"
+                  data-i18n-en-src="./assets/product/blank-board-start-en.png"
                   alt="전략 브리프·전략 전개안·실행기획안·빈 보드 중 빈 보드를 선택하고, 그 아래 빈 보드 템플릿 카드를 고르는 Think2Brief 시작 화면"
                   data-i18n-attr-alt="step1.alt"
                   width="1280"
@@ -199,6 +209,7 @@
               <div class="product-view-media" style="aspect-ratio: 1280 / 760">
                 <img
                   src="./assets/product/work-board.png"
+                  data-i18n-en-src="./assets/product/work-board-en.png"
                   alt="F&B 브랜드 SNS 재정비 사례를 작성한 Think2Brief 작업 보드. 목표와 타깃이 채워져 있고 콘텐츠 목표·타깃 반응·주제 메시지·포맷 채널 섹션에 카드가 쌓여 있다"
                   data-i18n-attr-alt="step2.alt"
                   width="1280"
@@ -217,6 +228,7 @@
               <div class="product-view-media" style="aspect-ratio: 1280 / 720">
                 <img
                   src="./assets/product/logic-review.png"
+                  data-i18n-en-src="./assets/product/logic-review-en.png"
                   alt="목표와 타깃부터 근거, 실행, 성공 판단 근거까지 6개 항목이 모두 연결됨으로 표시된 Think2Brief 연결 점검 화면"
                   data-i18n-attr-alt="step3.alt"
                   width="1280"
@@ -235,6 +247,7 @@
               <div class="product-view-media" style="aspect-ratio: 1280 / 900">
                 <img
                   src="./assets/product/final-brief.png"
+                  data-i18n-en-src="./assets/product/final-brief-en.png"
                   alt="목표와 타깃, 콘텐츠 목표·타깃 반응 섹션이 정리된 Think2Brief 최종 브리프 문서 화면"
                   data-i18n-attr-alt="step4.alt"
                   width="1280"

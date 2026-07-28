@@ -1,0 +1,31 @@
+# Chrome Web Store screenshots (English)
+
+`screenshot-1-start-en.png` … `screenshot-4-finish-en.png` (1280×800) are the
+English Chrome Web Store listing screenshots, matching the existing Korean
+listing images 1:1 in structure (dark card, `STEP N` label, headline, three
+checkmarks, footer tagline, and a real product screenshot on the right).
+
+These are not decorative mockups: the screenshot inside each card is the
+actual built extension (`campaign-strategy-os-extension`, `npm run build`,
+language switched to English), not hand-edited text. Steps 2–4 all use the
+built-in "F&B Brand Social Channel Refresh" example
+(`contentPlan` template) so the story stays consistent panel to panel.
+
+## Regenerating
+
+1. Build the extension in `campaign-strategy-os-extension` (`npm run build`)
+   so `dist/index.html` exists.
+2. Load it in a headless browser, switch the language toggle to English,
+   and capture:
+   - Step 1: default library screen (Strategic Brief selected)
+   - Step 2: the F&B example's work board
+   - Step 3: the F&B example's logic review
+   - Step 4: the F&B example's final brief
+3. Composite each capture into the dark STEP-card layout (see the git
+   history of this folder for the template/script used — it wasn't
+   committed here to avoid bundling a duplicate copy of the Pretendard font
+   and a cross-repo build dependency into this repository).
+
+Update these whenever the extension's English copy or the example content
+changes enough that the screenshots would look stale next to the real
+product.

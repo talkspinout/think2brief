@@ -2,6 +2,8 @@
   "use strict";
 
   var en = {
+    "meta.title": "Update Notes · Think2Brief — Marketing",
+    "meta.description": "Update notes for Think2Brief — Marketing.",
     "skip-link": "Skip to content",
     "nav.brandAria": "Think2Brief home",
     "nav.menuAria": "Main menu",

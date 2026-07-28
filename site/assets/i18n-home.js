@@ -2,6 +2,11 @@
   "use strict";
 
   var en = {
+    "meta.title": "Think2Brief — Marketing",
+    "meta.description":
+      "Think2Brief — Marketing checks whether your goal, evidence, strategy, and activities connect, then gathers it all into a final brief. A local-first Chrome extension.",
+    "meta.ogTitle": "Think2Brief — Marketing",
+    "meta.ogDescription": "From scattered thinking to a brief that holds together.",
     "skip-link": "Skip to content",
     "nav.brandAria": "Think2Brief home",
     "nav.menuAria": "Main menu",

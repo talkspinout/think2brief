@@ -19,7 +19,16 @@ Official product and privacy site for **Think2Brief — Marketing**.
   choice in `localStorage`. Each page loads its own dictionary
   (`i18n-home.js`, `i18n-privacy.js`, `i18n-updates.js`) — keep `data-i18n` /
   `data-i18n-attr-*` keys and dictionary keys in 1:1 sync; `npm run verify`
-  checks this automatically.
+  checks this automatically. `<title>` and the description/OG meta tags are
+  toggle-aware too (`data-i18n-attr-content`), but `og:locale`, `canonical`,
+  and the raw server-rendered HTML stay Korean on purpose — crawlers and
+  social unfurlers don't run JS, so a shared link's preview is always the
+  Korean one regardless of the visitor's toggle state. A real fix needs an
+  actual `/en/` URL; out of scope for now.
+- `site/assets/product/*-en.png`: English counterparts of the inline product
+  screenshots, swapped in by the toggle via `data-i18n-en-src` on each `<img>`.
+- `site/assets/store/`: English Chrome Web Store listing screenshots (not
+  linked from the site; for the store listing only). See its `README.md`.
 - `scripts/verify-site.mjs`: content and deployment regression checks
 - `.github/workflows/deploy-pages.yml`: deployment from `main`
 

@@ -25,6 +25,14 @@ for (const path of [
   "site/assets/product/logic-review.png",
   "site/assets/product/final-brief.png",
   "site/assets/product/blank-board-start.png",
+  "site/assets/product/work-board-en.png",
+  "site/assets/product/logic-review-en.png",
+  "site/assets/product/final-brief-en.png",
+  "site/assets/product/blank-board-start-en.png",
+  "site/assets/store/screenshot-1-start-en.png",
+  "site/assets/store/screenshot-2-capture-en.png",
+  "site/assets/store/screenshot-3-review-en.png",
+  "site/assets/store/screenshot-4-finish-en.png",
   "site/404.html",
   "site/robots.txt",
   "site/sitemap.xml",
@@ -32,6 +40,13 @@ for (const path of [
   "LICENSE",
 ]) {
   await access(resolve(root, path));
+}
+
+// 언어 토글이 있는 4장의 제품 화면은 각각 영문 스크린샷 짝(-en.png)을
+// data-i18n-en-src로 참조해야 한다 — 토글을 영문으로 바꿨는데 화면만
+// 한국어로 남는 조용한 회귀를 잡기 위한 고정.
+for (const base of ["blank-board-start", "work-board", "logic-review", "final-brief"]) {
+  assert.match(home, new RegExp(`data-i18n-en-src="\\./assets/product/${base}-en\\.png"`));
 }
 
 assert.match(home, /Think2Brief — Marketing/);
@@ -163,5 +178,17 @@ assert.match(updates, /<meta name="robots" content="noindex" \/>/);
 assert.doesNotMatch(sitemap, /\/updates\//);
 assert.doesNotMatch(home, /href="\.\/updates\/"/);
 assert.doesNotMatch(privacy, /href="\.\.\/updates\/"/);
+
+// <title>과 description/OG meta도 토글 대상이다 — 크롤러 미리보기까지는
+//못 고치지만(og:locale·canonical은 의도적으로 그대로 둠), 최소한 페이지
+// 안에서는 탭 제목과 메타 정보가 언어와 같이 바뀌어야 한다.
+for (const [label, page] of [["home", home], ["privacy", privacy], ["updates", updates]]) {
+  assert.match(page, /<title data-i18n="meta\.title">/, `${label}: <title> must be toggle-aware`);
+  assert.match(
+    page,
+    /<meta\s+name="description"\s+data-i18n-attr-content="meta\.description"/,
+    `${label}: meta description must be toggle-aware`,
+  );
+}
 
 console.log("Think2Brief 사이트 검증 통과");

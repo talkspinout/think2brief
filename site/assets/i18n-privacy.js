@@ -2,6 +2,9 @@
   "use strict";
 
   var en = {
+    "meta.title": "Privacy Policy · Think2Brief — Marketing",
+    "meta.description": "Privacy policy for the Think2Brief — Marketing Chrome extension.",
+    "meta.ogTitle": "Privacy Policy · Think2Brief — Marketing",
     "skip-link": "Skip to content",
     "nav.brandAria": "Think2Brief home",
     "nav.menuAria": "Main menu",
