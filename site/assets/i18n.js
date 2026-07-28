@@ -11,6 +11,7 @@
   var SUPPORTED = ["ko", "en"];
 
   var originals = new Map();
+  var originalAttrs = new WeakMap();
 
   function captureOriginal(el) {
     if (!originals.has(el)) originals.set(el, el.innerHTML);
@@ -59,21 +60,29 @@
     });
 
     document.querySelectorAll("*").forEach(function (el) {
+      // Snapshot attribute names first: translating writes new attributes
+      // back onto the element, and a live NamedNodeMap would pick those up
+      // mid-loop (data-i18n-attr-x-original itself starting with the same
+      // prefix), growing forever instead of terminating.
+      var directives = [];
       for (var i = 0; i < el.attributes.length; i += 1) {
-        var attr = el.attributes[i];
-        if (attr.name.indexOf("data-i18n-attr-") !== 0) continue;
-        var targetAttr = attr.name.replace("data-i18n-attr-", "");
-        var originalKey = "data-i18n-attr-" + targetAttr + "-original";
-        if (!el.hasAttribute(originalKey)) {
-          el.setAttribute(originalKey, el.getAttribute(targetAttr) || "");
-        }
-        var key = attr.value;
+        var name = el.attributes[i].name;
+        if (name.indexOf("data-i18n-attr-") === 0) directives.push(name);
+      }
+
+      directives.forEach(function (attrName) {
+        var targetAttr = attrName.replace("data-i18n-attr-", "");
+        var key = el.getAttribute(attrName);
+        if (!originalAttrs.has(el)) originalAttrs.set(el, {});
+        var cache = originalAttrs.get(el);
+        if (!(targetAttr in cache)) cache[targetAttr] = el.getAttribute(targetAttr) || "";
+
         if (lang === "en" && dictionary[key] !== undefined) {
           el.setAttribute(targetAttr, dictionary[key]);
         } else {
-          el.setAttribute(targetAttr, el.getAttribute(originalKey));
+          el.setAttribute(targetAttr, cache[targetAttr]);
         }
-      }
+      });
     });
 
     document.querySelectorAll("[data-lang-switch]").forEach(function (btn) {
