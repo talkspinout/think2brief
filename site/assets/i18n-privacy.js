@@ -10,12 +10,12 @@ export const en = {
     "summary.title": "Privacy<br />policy",
     "summary.subtitle": "Think2Brief — Marketing<br />Chrome extension",
     "summary.effectiveDateLabel": "Effective date",
-    "summary.effectiveDateValue": "July 25, 2026",
+    "summary.effectiveDateValue": "July 28, 2026",
     "summary.versionLabel": "Policy version",
     "summary.contactLabel": "Contact",
     "lead.title": "Summary",
     "lead.body":
-      "Think2Brief — Marketing currently uses no account, no external server, no analytics, and no advertising trackers. Briefs and project data you create are stored inside your Chrome browser and are never sent to the developer.",
+      "The Chrome extension uses no account, no external server, no analytics, and no advertising trackers. Briefs and project data you create are stored inside your Chrome browser and are never sent to the developer. This product website uses Google Tag Manager for visit statistics — see item 8 for details.",
     "s01.title": "Scope and operator",
     "s01.body":
       'This privacy policy applies to the Chrome extension <b>Think2Brief — Marketing</b>, provided by Hongseok Ko (talkspinout). Questions about the product website go to <a href="mailto:think2brief@gmail.com">think2brief@gmail.com</a>.',
@@ -46,7 +46,7 @@ export const en = {
     "s04.fact4Label": "User accounts",
     "s04.fact4Value": "None",
     "s04.body":
-      "The current version does not call Google Drive, Notion, LLM APIs, or any other external data service. The developer does not collect, view, sell, or share with third parties any project you enter into the extension.",
+      "This table describes the Chrome extension. For the product website's use of analytics, see item 8. The current version does not call Google Drive, Notion, LLM APIs, or any other external data service. The developer does not collect, view, sell, or share with third parties any project you enter into the extension.",
     "s05.title": "Chrome permissions",
     "s05.body":
       "The extension requests no additional Chrome permissions. It has no access to your browsing history, the content of other tabs, your Google account, external files, or external servers.",
@@ -60,7 +60,11 @@ export const en = {
       "The current version does not transmit project data over the network, so there is no external transmission process. You are responsible for securing access to your device account, Chrome profile, and any exported files. On a shared device, we recommend not entering sensitive work content.",
     "s08.title": "Product website",
     "s08.body":
-      'The product introduction and this privacy policy are hosted on GitHub Pages. While you\'re visiting the website, GitHub may process technical information such as access logs, which is subject to the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>. The extension never includes project content or a unique project identifier in the URL when it opens this website.',
+      'The product introduction and this privacy policy are hosted on GitHub Pages. While you\'re visiting the website, GitHub may process technical information such as access logs, which is subject to the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>.',
+    "s08.analytics":
+      'This website uses <a href="https://policies.google.com/technologies/managing">Google Tag Manager</a> for visit statistics. Tag Manager may use cookies to collect standard web analytics data such as pages visited, device and browser information, and an approximate location derived from your IP address. This information is sent to Google and is subject to the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. You can opt out via your browser\'s cookie settings or a Google Analytics opt-out extension.',
+    "s08.appSeparate":
+      "The Chrome extension itself operates separately from this website: it does not include Tag Manager and uses no analytics tools of any kind. The extension never includes project content or a unique project identifier in the URL when it opens this website.",
     "s09.title": "Future features and policy changes",
     "s09.body1":
       "If our data practices change, we will disclose the changed data types and purposes in advance through this privacy policy and inside the extension. We will not process any newly collected or used data before you explicitly consent. We will also update the Chrome Web Store's privacy disclosures before shipping any such change.",

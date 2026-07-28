@@ -104,7 +104,7 @@ assert.match(home, /blank-board-start\.png/);
 assert.ok(home.indexOf("<figcaption>") < home.indexOf('src="./assets/product/work-board.png"'));
 
 assert.match(privacy, /시행일/);
-assert.match(privacy, /2026년 7월 25일/);
+assert.match(privacy, /2026년 7월 28일/);
 assert.match(privacy, /think2brief@gmail\.com/);
 // unlimitedStorage는 localStorage에는 적용되지 않아 실효가 없고, 실제로
 // 요청하는 권한도 아니므로(매니페스트에서 제거) 정책에서도 다시 등장하지
@@ -169,8 +169,19 @@ for (const [label, pageHtml, dictJs] of [
 
 assert.match(i18n, /think2brief-site-language/);
 assert.match(i18nHome, /Install from the Chrome Web Store/);
-assert.match(i18nPrivacy, /think2brief — marketing currently uses no account/i);
+assert.match(i18nPrivacy, /the chrome extension uses no account/i);
 assert.match(i18nPrivacy, /None/);
+
+// GTM은 마케팅 사이트에만 설치한다 — 확장 프로그램은 여전히 분석 도구를
+// 쓰지 않는다는 걸 스토어에 이미 그렇게 제출했다. 정책 문서가 "확장 프로그램"과
+// "웹사이트"를 명확히 구분해서 진술하는지 고정해 둔다.
+for (const [label, page] of [["home", home], ["privacy", privacy], ["updates", updates], ["en/home", enHome], ["en/privacy", enPrivacy]]) {
+  assert.match(page, /GTM-TVM9224X/, `${label}: missing the GTM container snippet`);
+}
+assert.match(privacy, /Google 태그 관리자/, "privacy: missing the Korean GTM disclosure");
+assert.match(privacy, /Chrome 확장 프로그램 자체는 이 웹사이트와 별개로 동작하며/, "privacy: missing the extension/website separation statement");
+assert.match(i18nPrivacy, /Google Tag Manager/, "i18n-privacy: missing the English GTM disclosure");
+assert.match(i18nPrivacy, /operates separately from this website/, "i18n-privacy: missing the extension/website separation statement");
 
 // 업데이트 노트는 구조만 먼저 만든 것으로 합의했다 — 웹스토어 심사 전까지는
 // 검색 노출·sitemap·메인 내비게이션에 올리지 않는다. 이 결정이 조용히
