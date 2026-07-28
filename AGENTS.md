@@ -13,10 +13,17 @@ pull requests, and issues are the shared source of truth.
 
 ## Required verification
 
-- Run `npm run verify`.
-- Check the product and privacy pages at desktop and mobile widths.
+- Run `npm install` (first time, or after `package.json` changes), then
+  `npm run verify` — this builds `site/en/` (`scripts/build-en.mjs`) before
+  checking it.
+- Check the product and privacy pages, in both Korean and English
+  (`/en/`, `/en/privacy/`), at desktop and mobile widths.
 - Check keyboard focus, internal links, the mail link, and print layout for the
   privacy policy.
+- If you change `site/index.html` or `site/privacy/index.html`'s structure,
+  re-check `scripts/build-en.mjs`'s assumptions (asset-path rebasing,
+  `.lang-toggle` replacement) still hold — it's a lightweight HTML transform,
+  not a templating engine.
 - Record any unverified behavior in the PR.
 
 ## Content invariants
