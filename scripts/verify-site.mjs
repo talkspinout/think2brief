@@ -179,8 +179,12 @@ for (const [label, page] of [["home", home], ["privacy", privacy], ["updates", u
   assert.match(page, /GTM-TVM9224X/, `${label}: missing the GTM container snippet`);
 }
 assert.match(privacy, /Google 태그 관리자/, "privacy: missing the Korean GTM disclosure");
+assert.match(privacy, /Google 애널리틱스 4/, "privacy: missing the Korean GA4 disclosure");
+assert.match(privacy, /프로젝트·카드·브리프 내용은 웹사이트 분석\s+정보에 포함되지 않습니다/, "privacy: extension content exclusion is unclear");
 assert.match(privacy, /Chrome 확장 프로그램 자체는 이 웹사이트와 별개로 동작하며/, "privacy: missing the extension/website separation statement");
 assert.match(i18nPrivacy, /Google Tag Manager/, "i18n-privacy: missing the English GTM disclosure");
+assert.match(i18nPrivacy, /Google Analytics 4/, "i18n-privacy: missing the English GA4 disclosure");
+assert.match(i18nPrivacy, /Project, card, and brief content entered in the Chrome extension is never included/, "i18n-privacy: extension content exclusion is unclear");
 assert.match(i18nPrivacy, /operates separately from this website/, "i18n-privacy: missing the extension/website separation statement");
 
 // 업데이트 노트는 구조만 먼저 만든 것으로 합의했다 — 웹스토어 심사 전까지는

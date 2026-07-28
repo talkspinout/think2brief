@@ -15,7 +15,7 @@ export const en = {
     "summary.contactLabel": "Contact",
     "lead.title": "Summary",
     "lead.body":
-      "The Chrome extension uses no account, no external server, no analytics, and no advertising trackers. Briefs and project data you create are stored inside your Chrome browser and are never sent to the developer. This product website uses Google Tag Manager for visit statistics — see item 8 for details.",
+      "The Chrome extension uses no account, no external server, no analytics, and no advertising trackers. Briefs and project data you create are stored inside your Chrome browser and are never sent to the developer. This product website uses Google Tag Manager and Google Analytics 4 for visit statistics — see item 8 for details.",
     "s01.title": "Scope and operator",
     "s01.body":
       'This privacy policy applies to the Chrome extension <b>Think2Brief — Marketing</b>, provided by Hongseok Ko (talkspinout). Questions about the product website go to <a href="mailto:think2brief@gmail.com">think2brief@gmail.com</a>.',
@@ -62,7 +62,7 @@ export const en = {
     "s08.body":
       'The product introduction and this privacy policy are hosted on GitHub Pages. While you\'re visiting the website, GitHub may process technical information such as access logs, which is subject to the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>.',
     "s08.analytics":
-      'This website uses <a href="https://policies.google.com/technologies/managing">Google Tag Manager</a> for visit statistics. Tag Manager may use cookies to collect standard web analytics data such as pages visited, device and browser information, and an approximate location derived from your IP address. This information is sent to Google and is subject to the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. You can opt out via your browser\'s cookie settings or a Google Analytics opt-out extension.',
+      'This website uses Google Analytics 4 through <a href="https://policies.google.com/technologies/managing">Google Tag Manager</a> to understand visits and improve the site. This may process pages visited, feature-use events, device and browser information, an approximate region derived from the IP address, and cookies or similar identifiers. Project, card, and brief content entered in the Chrome extension is never included in website analytics. The information is sent to Google and is subject to the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. You can limit collection through your browser cookie settings or the Google Analytics opt-out browser add-on.',
     "s08.appSeparate":
       "The Chrome extension itself operates separately from this website: it does not include Tag Manager and uses no analytics tools of any kind. The extension never includes project content or a unique project identifier in the URL when it opens this website.",
     "s09.title": "Future features and policy changes",
