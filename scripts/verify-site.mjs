@@ -20,6 +20,8 @@ const [home, privacy, updates, enHome, enPrivacy, styles, workflow, i18n, i18nHo
   read("site/assets/i18n-updates.js"),
   read("site/sitemap.xml"),
 ]);
+const analyticsConsent = await read("site/assets/analytics-consent.js");
+const notFound = await read("site/404.html");
 
 for (const path of [
   "site/assets/icon128.png",
@@ -175,16 +177,22 @@ assert.match(i18nPrivacy, /None/);
 // GTM은 마케팅 사이트에만 설치한다 — 확장 프로그램은 여전히 분석 도구를
 // 쓰지 않는다는 걸 스토어에 이미 그렇게 제출했다. 정책 문서가 "확장 프로그램"과
 // "웹사이트"를 명확히 구분해서 진술하는지 고정해 둔다.
-for (const [label, page] of [["home", home], ["privacy", privacy], ["updates", updates], ["en/home", enHome], ["en/privacy", enPrivacy]]) {
-  assert.match(page, /GTM-TVM9224X/, `${label}: missing the GTM container snippet`);
+for (const [label, page] of [["home", home], ["privacy", privacy], ["updates", updates], ["404", notFound], ["en/home", enHome], ["en/privacy", enPrivacy]]) {
+  assert.match(page, /analytics-consent\.js/, `${label}: missing the analytics consent controller`);
+  assert.doesNotMatch(page, /googletagmanager\.com/, `${label}: GTM must not load before consent`);
 }
+assert.match(analyticsConsent, /GTM-TVM9224X/, "analytics consent controller: missing GTM container id");
+assert.match(analyticsConsent, /think2brief-analytics-consent-v1/, "analytics consent controller: missing persisted choice");
+assert.match(analyticsConsent, /analytics_storage/, "analytics consent controller: missing consent mode state");
 assert.match(privacy, /Google 태그 관리자/, "privacy: missing the Korean GTM disclosure");
 assert.match(privacy, /Google 애널리틱스 4/, "privacy: missing the Korean GA4 disclosure");
 assert.match(privacy, /프로젝트·카드·브리프 내용은 웹사이트 분석\s+정보에 포함되지 않습니다/, "privacy: extension content exclusion is unclear");
+assert.match(privacy, /동의\s+전에는 Google 태그 관리자와 Google 애널리틱스를 불러오지/, "privacy: consent-first loading is unclear");
 assert.match(privacy, /Chrome 확장 프로그램 자체는 이 웹사이트와 별개로 동작하며/, "privacy: missing the extension/website separation statement");
 assert.match(i18nPrivacy, /Google Tag Manager/, "i18n-privacy: missing the English GTM disclosure");
 assert.match(i18nPrivacy, /Google Analytics 4/, "i18n-privacy: missing the English GA4 disclosure");
 assert.match(i18nPrivacy, /Project, card, and brief content entered in the Chrome extension is never included/, "i18n-privacy: extension content exclusion is unclear");
+assert.match(i18nPrivacy, /not loaded before you consent/, "i18n-privacy: consent-first loading is unclear");
 assert.match(i18nPrivacy, /operates separately from this website/, "i18n-privacy: missing the extension/website separation statement");
 
 // 업데이트 노트는 구조만 먼저 만든 것으로 합의했다 — 웹스토어 심사 전까지는
