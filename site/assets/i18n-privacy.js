@@ -6,6 +6,7 @@ export const en = {
     "nav.brandAria": "Think2Brief home",
     "nav.menuAria": "Main menu",
     "nav.product": "Product",
+    "nav.updates": "Updates",
     "nav.contact": "Contact",
     "summary.title": "Privacy<br />policy",
     "summary.subtitle": "Think2Brief — Marketing<br />Chrome extension",

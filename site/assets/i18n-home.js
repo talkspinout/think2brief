@@ -9,6 +9,7 @@ export const en = {
     "nav.menuAria": "Main menu",
     "nav.howItWorks": "How it works",
     "nav.privacy": "Privacy policy",
+    "nav.updates": "Updates",
     "nav.contact": "Contact",
     "hero.title": "From scattered thinking<br />to a brief that holds together.",
     "hero.description":

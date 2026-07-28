@@ -10,7 +10,11 @@ export const en = {
     "updates.title": "Update notes",
     "updates.description":
       "A short record of what changed in Think2Brief. Written around what you'd actually notice, not the commit log.",
-    "updates.empty": "Update notes are coming soon. Entries will start appearing here from the next release.",
+    "update.v110.title": "English support added (v1.1.0)",
+    "update.v110.item1":
+      "The Chrome extension now supports English. Switch languages anytime from the toggle in the top-right corner.",
+    "update.v110.item2":
+      "Existing Korean projects are untouched, and newly created projects keep the language they were started in.",
     "footer.backToProduct": "← Back to product",
     "langBanner.text": "Read this page in English?",
     "langBanner.switch": "View in English",

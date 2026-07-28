@@ -4,13 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#161b1d" />
-    <meta name="robots" content="noindex" />
-    <!--
-      구조만 먼저 만들어 둔 페이지입니다. Chrome 웹스토어 심사 전이라 아직
-      내비게이션에 링크하거나 sitemap.xml에 넣지 않았습니다. 실제 업데이트
-      항목을 채우기 시작할 때 noindex를 제거하고 sitemap과 헤더/푸터 링크에
-      추가하세요.
-    -->
     <meta
       name="description"
       data-i18n-attr-content="meta.description"
@@ -66,9 +59,17 @@
       </div>
 
       <ul class="updates-list" aria-live="polite">
-        <li class="updates-empty" data-i18n="updates.empty">
-          업데이트 노트를 준비 중입니다. 다음 업데이트부터 이곳에 기록을
-          남깁니다.
+        <li class="update-entry">
+          <time datetime="2026-07-28">2026.07.28</time>
+          <h2 data-i18n="update.v110.title">영어 지원 추가 (v1.1.0)</h2>
+          <ul>
+            <li data-i18n="update.v110.item1">
+              확장 프로그램이 이제 영어를 지원합니다. 우측 상단 토글로 언제든 언어를 전환할 수 있습니다.
+            </li>
+            <li data-i18n="update.v110.item2">
+              기존 한국어 프로젝트는 그대로 유지되고, 새로 만든 프로젝트는 시작한 언어를 유지합니다.
+            </li>
+          </ul>
         </li>
       </ul>
     </main>
