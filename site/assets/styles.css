@@ -139,6 +139,82 @@ a {
   background: rgba(255, 255, 255, 0.72);
 }
 
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  border: 1px solid #cfd3d1;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.lang-toggle button {
+  min-width: 34px;
+  padding: 5px 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.lang-toggle button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.lang-banner {
+  border-bottom: 1px solid rgba(22, 27, 29, 0.09);
+  background: var(--teal-pale);
+}
+
+.lang-banner-inner {
+  min-height: 48px;
+  padding: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lang-banner-inner p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.lang-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lang-banner-actions .button {
+  min-height: 36px;
+  padding: 0 14px;
+  font-size: 12px;
+}
+
+.lang-banner-dismiss {
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lang-banner-dismiss:hover,
+.lang-banner-dismiss:focus-visible {
+  color: var(--ink);
+}
+
 .hero {
   min-height: 760px;
   padding: 92px 0 112px;
@@ -860,22 +936,83 @@ a {
   font-weight: 800;
 }
 
-.english-summary {
-  padding: 42px;
-  border-radius: 18px;
-  background: var(--paper);
-}
-
-.english-summary .section-kicker {
-  margin-bottom: 8px;
-}
-
 .policy-footer {
   padding-top: 20px;
 }
 
 .policy-footer .footer-bottom {
   margin-top: 0;
+}
+
+.updates-layout {
+  padding: 72px 0 96px;
+}
+
+.updates-heading {
+  max-width: 640px;
+}
+
+.updates-heading h1 {
+  margin: 0;
+  font-size: clamp(32px, 4.5vw, 48px);
+  letter-spacing: -0.045em;
+}
+
+.updates-heading p {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.updates-list {
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.updates-empty {
+  padding: 28px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* 실제 항목이 생기면 <li class="updates-empty">를
+   <li class="update-entry"><time datetime="YYYY-MM-DD">YYYY.MM.DD</time>
+   <h2>한 줄 요약</h2><ul><li>세부 불릿</li></ul></li> 형태로 교체한다. */
+.update-entry {
+  padding: 22px 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.update-entry time {
+  display: block;
+  color: var(--teal-dark);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.update-entry h2 {
+  margin: 6px 0 0;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.update-entry ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.8;
 }
 
 @media (max-width: 980px) {
@@ -1109,10 +1246,6 @@ a {
   .policy-facts div:nth-child(even) {
     padding: 14px 0;
     border-left: 0;
-  }
-
-  .english-summary {
-    padding: 28px 22px;
   }
 }
 
