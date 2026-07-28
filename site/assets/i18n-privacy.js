@@ -1,7 +1,4 @@
-(function () {
-  "use strict";
-
-  var en = {
+export const en = {
     "meta.title": "Privacy Policy · Think2Brief — Marketing",
     "meta.description": "Privacy policy for the Think2Brief — Marketing Chrome extension.",
     "meta.ogTitle": "Privacy Policy · Think2Brief — Marketing",
@@ -77,5 +74,6 @@
     "langBanner.dismiss": "Dismiss",
   };
 
+if (typeof window !== "undefined" && window.Think2BriefI18n) {
   window.Think2BriefI18n.init(en);
-})();
+}

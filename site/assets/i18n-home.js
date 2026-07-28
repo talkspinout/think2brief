@@ -1,7 +1,4 @@
-(function () {
-  "use strict";
-
-  var en = {
+export const en = {
     "meta.title": "Think2Brief — Marketing",
     "meta.description":
       "Think2Brief — Marketing checks whether your goal, evidence, strategy, and activities connect, then gathers it all into a final brief. A local-first Chrome extension.",
@@ -88,5 +85,6 @@
     "langBanner.dismiss": "Dismiss",
   };
 
+if (typeof window !== "undefined" && window.Think2BriefI18n) {
   window.Think2BriefI18n.init(en);
-})();
+}

@@ -6,10 +6,12 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (path) => readFile(resolve(root, path), "utf8");
 
-const [home, privacy, updates, styles, workflow, i18n, i18nHome, i18nPrivacy, i18nUpdates, sitemap] = await Promise.all([
+const [home, privacy, updates, enHome, enPrivacy, styles, workflow, i18n, i18nHome, i18nPrivacy, i18nUpdates, sitemap] = await Promise.all([
   read("site/index.html"),
   read("site/privacy/index.html"),
   read("site/updates/index.html"),
+  read("site/en/index.html"),
+  read("site/en/privacy/index.html"),
   read("site/assets/styles.css"),
   read(".github/workflows/deploy-pages.yml"),
   read("site/assets/i18n.js"),
@@ -179,9 +181,9 @@ assert.doesNotMatch(sitemap, /\/updates\//);
 assert.doesNotMatch(home, /href="\.\/updates\/"/);
 assert.doesNotMatch(privacy, /href="\.\.\/updates\/"/);
 
-// <title>과 description/OG meta도 토글 대상이다 — 크롤러 미리보기까지는
-//못 고치지만(og:locale·canonical은 의도적으로 그대로 둠), 최소한 페이지
-// 안에서는 탭 제목과 메타 정보가 언어와 같이 바뀌어야 한다.
+// <title>과 description/OG meta도 토글 대상이다. 크롤러 미리보기는 JS를
+// 실행하지 않으므로 이 3장(home/privacy/updates)의 원문 자체는 계속
+// 한국어로 남는다 — 크롤러용 진짜 영문 진입점은 site/en/(아래 별도 검증).
 for (const [label, page] of [["home", home], ["privacy", privacy], ["updates", updates]]) {
   assert.match(page, /<title data-i18n="meta\.title">/, `${label}: <title> must be toggle-aware`);
   assert.match(
@@ -190,5 +192,32 @@ for (const [label, page] of [["home", home], ["privacy", privacy], ["updates", u
     `${label}: meta description must be toggle-aware`,
   );
 }
+
+// site/en/ is scripts/build-en.mjs's output — a real, crawlable English
+// snapshot with its own lang/canonical/og:locale, generated from the same
+// Korean HTML + EN dictionaries the client-side toggle uses (single source
+// of truth). `npm run verify` builds it first; see package.json.
+for (const [label, page, base] of [["en/home", enHome, "https://talkspinout.github.io/think2brief/en/"], ["en/privacy", enPrivacy, "https://talkspinout.github.io/think2brief/en/privacy/"]]) {
+  assert.match(page, /<html lang="en">/, `${label}: must render as lang="en"`);
+  assert.doesNotMatch(page, /data-i18n/, `${label}: must not leak build-time data-i18n* directives`);
+  assert.doesNotMatch(page, /<script[^>]*\/assets\/i18n/, `${label}: static snapshot needs no toggle script`);
+  assert.doesNotMatch(page, /<!--/, `${label}: build comments must be stripped`);
+  assert.match(page, new RegExp(`<link rel="canonical" href="${base.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}">`), `${label}: canonical must point at itself`);
+  assert.match(page, /<meta property="og:locale" content="en_US">/, `${label}: og:locale must be en_US`);
+  assert.doesNotMatch(page, /\.\.\/\.\//, `${label}: asset paths must not be malformed (../.'/)`);
+}
+assert.match(enHome, /Install from the Chrome Web Store/);
+assert.match(enHome, /product\/blank-board-start-en\.png/);
+assert.match(enPrivacy, /Chrome extension\.<\/p>|Chrome extension\./);
+
+// KO 원본과 EN 스냅샷은 서로 같은 hreflang 대체 링크 세트를 들고 있어야
+// 한다 — 한쪽만 갱신되고 잊히는 걸 막기 위한 고정.
+for (const [label, page] of [["home", home], ["en/home", enHome], ["privacy", privacy], ["en/privacy", enPrivacy]]) {
+  assert.match(page, /hreflang="ko"/, `${label}: missing hreflang=ko`);
+  assert.match(page, /hreflang="en"/, `${label}: missing hreflang=en`);
+  assert.match(page, /hreflang="x-default"/, `${label}: missing hreflang=x-default`);
+}
+
+assert.doesNotMatch(`${enHome}\n${enPrivacy}`, /http:\/\//);
 
 console.log("Think2Brief 사이트 검증 통과");

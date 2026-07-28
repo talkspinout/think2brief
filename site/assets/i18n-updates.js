@@ -1,7 +1,4 @@
-(function () {
-  "use strict";
-
-  var en = {
+export const en = {
     "meta.title": "Update Notes · Think2Brief — Marketing",
     "meta.description": "Update notes for Think2Brief — Marketing.",
     "skip-link": "Skip to content",
@@ -20,5 +17,6 @@
     "langBanner.dismiss": "Dismiss",
   };
 
+if (typeof window !== "undefined" && window.Think2BriefI18n) {
   window.Think2BriefI18n.init(en);
-})();
+}

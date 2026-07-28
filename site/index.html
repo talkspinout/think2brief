@@ -19,12 +19,15 @@
     <meta property="og:url" content="https://talkspinout.github.io/think2brief/" />
     <meta property="og:locale" content="ko_KR" />
     <!--
-      og:locale, canonical, and this document's server-rendered Korean text are
-      intentionally left untouched by the language toggle: crawlers and social
-      unfurlers don't execute JS, so a shared link's preview always reflects
-      this raw HTML. Fixing that for real needs a genuine /en/ URL (a static
-      snapshot or a separate build target) — out of scope for the toggle.
+      This page stays Korean regardless of the client-side toggle — crawlers
+      and social unfurlers don't execute JS, so a shared link's preview always
+      reflects the raw HTML. The real English entry point for crawlers is the
+      generated snapshot at /en/ (scripts/build-en.mjs), linked below via
+      hreflang so search engines route English-preferring users there instead.
     -->
+    <link rel="alternate" hreflang="ko" href="https://talkspinout.github.io/think2brief/" />
+    <link rel="alternate" hreflang="en" href="https://talkspinout.github.io/think2brief/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://talkspinout.github.io/think2brief/" />
     <link rel="canonical" href="https://talkspinout.github.io/think2brief/" />
     <link rel="icon" type="image/png" href="./assets/icon128.png" />
     <link rel="stylesheet" href="./assets/styles.css" />
@@ -320,6 +323,6 @@
     </footer>
 
     <script src="./assets/i18n.js"></script>
-    <script src="./assets/i18n-home.js"></script>
+    <script type="module" src="./assets/i18n-home.js"></script>
   </body>
 </html>
