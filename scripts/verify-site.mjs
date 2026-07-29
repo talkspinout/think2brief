@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (path) => readFile(resolve(root, path), "utf8");
 
-const [home, privacy, updates, enHome, enPrivacy, enUpdates, styles, workflow, i18n, i18nHome, i18nPrivacy, i18nUpdates, sitemap] = await Promise.all([
+const [home, privacy, updates, enHome, enPrivacy, enUpdates, styles, workflow, i18n, i18nHome, i18nPrivacy, i18nUpdates, sitemap, drivePicker, drivePickerScript, drivePickerStyles] = await Promise.all([
   read("site/index.html"),
   read("site/privacy/index.html"),
   read("site/updates/index.html"),
@@ -20,6 +20,9 @@ const [home, privacy, updates, enHome, enPrivacy, enUpdates, styles, workflow, i
   read("site/assets/i18n-privacy.js"),
   read("site/assets/i18n-updates.js"),
   read("site/sitemap.xml"),
+  read("site/drive-picker/index.html"),
+  read("site/assets/drive-picker.js"),
+  read("site/assets/drive-picker.css"),
 ]);
 const analyticsConsent = await read("site/assets/analytics-consent.js");
 const notFound = await read("site/404.html");
@@ -41,6 +44,9 @@ for (const path of [
   "site/404.html",
   "site/robots.txt",
   "site/sitemap.xml",
+  "site/drive-picker/index.html",
+  "site/assets/drive-picker.js",
+  "site/assets/drive-picker.css",
   "site/.nojekyll",
   "LICENSE",
 ]) {
@@ -107,16 +113,19 @@ assert.match(home, /blank-board-start\.png/);
 assert.ok(home.indexOf("<figcaption>") < home.indexOf('src="./assets/product/work-board.png"'));
 
 assert.match(privacy, /시행일/);
-assert.match(privacy, /2026년 7월 28일/);
+assert.match(privacy, /2026년 7월 30일/);
 assert.match(privacy, /think2brief@gmail\.com/);
 // unlimitedStorage는 localStorage에는 적용되지 않아 실효가 없고, 실제로
 // 요청하는 권한도 아니므로(매니페스트에서 제거) 정책에서도 다시 등장하지
 // 않아야 한다.
 assert.doesNotMatch(privacy, /unlimitedStorage/);
-assert.match(privacy, /추가 Chrome 권한을 요청하지 않습니다/);
+assert.match(privacy, /identity/);
+assert.match(privacy, /drive\.file/);
 assert.match(privacy, /개발자 서버 수집[\s\S]*없음/);
-assert.match(privacy, /제3자 전송·판매[\s\S]*없음/);
-assert.match(privacy, /Google Drive, Notion, LLM/);
+assert.match(privacy, /사용자 선택 시 Google Drive/);
+assert.match(privacy, /Notion, LLM API 또는 개발자 서버/);
+assert.match(privacy, /\/drive-picker\//);
+assert.match(privacy, /OAuth 인증 토큰은 URL/);
 
 assert.match(styles, /@media \(max-width: 720px\)/);
 assert.match(styles, /@media print/);
@@ -172,7 +181,7 @@ for (const [label, pageHtml, dictJs] of [
 
 assert.match(i18n, /think2brief-site-language/);
 assert.match(i18nHome, /Install from the Chrome Web Store/);
-assert.match(i18nPrivacy, /the chrome extension uses no account/i);
+assert.match(i18nPrivacy, /no developer account or server/i);
 assert.match(i18nPrivacy, /None/);
 
 // GTM은 마케팅 사이트에만 설치한다 — 확장 프로그램은 여전히 분석 도구를
@@ -195,6 +204,20 @@ assert.match(i18nPrivacy, /Google Analytics 4/, "i18n-privacy: missing the Engli
 assert.match(i18nPrivacy, /Project, card, and brief content entered in the Chrome extension is never included/, "i18n-privacy: extension content exclusion is unclear");
 assert.match(i18nPrivacy, /not loaded before you consent/, "i18n-privacy: consent-first loading is unclear");
 assert.match(i18nPrivacy, /operates separately from this website/, "i18n-privacy: missing the extension/website separation statement");
+
+// Google Picker runs on a deliberately isolated, no-analytics bridge page.
+// The OAuth token must never be placed in a URL or persisted by that page.
+assert.match(drivePicker, /Content-Security-Policy/);
+assert.match(drivePicker, /noindex, nofollow, noarchive/);
+assert.match(drivePicker, /drive-picker\.js/);
+assert.doesNotMatch(drivePicker, /analytics-consent|googletagmanager|gtag\(/i);
+assert.doesNotMatch(drivePickerScript, /localStorage|sessionStorage|document\.cookie/);
+assert.doesNotMatch(drivePickerScript, /searchParams\.get\(["'](?:token|access_token)/);
+assert.match(drivePickerScript, /event\.origin !== extensionOrigin/);
+assert.match(drivePickerScript, /event\.source !== window\.opener/);
+assert.match(drivePickerScript, /data\?\.state !== state/);
+assert.match(drivePickerScript, /postMessage/);
+assert.match(drivePickerStyles, /picker-shell/);
 
 // Chrome 웹스토어 심사가 끝난 뒤 업데이트 노트를 공개하기로 했다 —
 // noindex를 걷어내고 sitemap·메인 내비게이션에 올렸다. 이 상태가 조용히
