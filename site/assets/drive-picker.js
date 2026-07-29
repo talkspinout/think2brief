@@ -78,10 +78,14 @@
     await loadPickerModule();
 
     // setIncludeFolders(true) is required for FOLDERS-view double-click
-    // navigation into subfolders to actually populate their contents and
-    // for the Select button to react to the folder you've navigated into —
-    // without it, drilling into a folder shows nothing and Select stays
-    // disabled.
+    // navigation into subfolders to populate their contents at all.
+    // Separately: Picker's own interaction model has no row representing
+    // "the folder I'm currently inside" — double-clicking a folder only
+    // navigates into it, and Select only reacts to a single-clicked row in
+    // the *current* listing. There is no way to target a folder you've
+    // already navigated into; the user has to go back up one level and
+    // single-click it from its parent's listing instead. The status text
+    // below spells this out since it isn't obvious from the Picker UI.
     const isFolderMode = mode === "folders";
     const view = isFolderMode
       ? new window.google.picker.DocsView(window.google.picker.ViewId.FOLDERS)
@@ -109,7 +113,7 @@
 
     picker.setVisible(true);
     setStatus(isFolderMode
-      ? "Google Drive에서 저장할 폴더를 선택하세요."
+      ? "폴더를 한 번 클릭해 선택하세요. 더블클릭하면 안으로 들어가 하위 폴더만 고를 수 있고, 그 폴더 자체는 선택할 수 없습니다."
       : "Google Drive에서 Think2Brief 프로젝트 파일을 선택하세요.");
   };
 
