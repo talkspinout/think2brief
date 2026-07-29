@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="origin" />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self' https://apis.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline'; img-src data: https://*.googleusercontent.com https://ssl.gstatic.com https://www.gstatic.com; connect-src https://www.googleapis.com https://accounts.google.com https://docs.google.com; frame-src https://accounts.google.com https://docs.google.com https://*.googleusercontent.com; base-uri 'none'; form-action 'none'; object-src 'none'"
+    />
+    <meta name="theme-color" content="#f7f6f2" />
+    <link rel="icon" type="image/png" href="../assets/icon128.png" />
+    <link rel="stylesheet" href="../assets/drive-picker.css" />
+    <title>Google Drive 파일 선택 · Think2Brief</title>
+  </head>
+  <body>
+    <main class="picker-shell" aria-labelledby="picker-title">
+      <span class="brand-mark" aria-hidden="true"><span></span></span>
+      <p class="eyebrow">THINK2BRIEF — MARKETING</p>
+      <h1 id="picker-title">Google Drive 파일 선택</h1>
+      <p id="picker-status" class="status" role="status" aria-live="polite">
+        Google Drive 탐색기를 준비하고 있습니다…
+      </p>
+      <p class="privacy-note">
+        이 페이지는 파일 선택에만 사용됩니다. 분석 도구를 실행하지 않으며,
+        인증 정보는 브라우저 메모리에만 잠시 유지됩니다.
+      </p>
+      <button id="close-picker" type="button">닫기</button>
+    </main>
+    <script src="../assets/drive-picker.js"></script>
+  </body>
+</html>

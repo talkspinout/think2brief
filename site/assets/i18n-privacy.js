@@ -11,12 +11,12 @@ export const en = {
     "summary.title": "Privacy<br />policy",
     "summary.subtitle": "Think2Brief — Marketing<br />Chrome extension",
     "summary.effectiveDateLabel": "Effective date",
-    "summary.effectiveDateValue": "July 28, 2026",
+    "summary.effectiveDateValue": "July 30, 2026",
     "summary.versionLabel": "Policy version",
     "summary.contactLabel": "Contact",
     "lead.title": "Summary",
     "lead.body":
-      "The Chrome extension uses no account, no external server, no analytics, and no advertising trackers. Briefs and project data you create are stored inside your Chrome browser and are never sent to the developer. This product website uses Google Tag Manager and Google Analytics 4 for visit statistics — see item 8 for details.",
+      "The Chrome extension uses no developer account or server, analytics, or advertising trackers. It uses Google account authentication and Google Drive save/open features only when you choose them. Project data is never sent to the developer. Website visit analytics and the dedicated Drive file-picker page operate differently — see items 4 and 8.",
     "s01.title": "Scope and operator",
     "s01.body":
       'This privacy policy applies to the Chrome extension <b>Think2Brief — Marketing</b>, provided by Hongseok Ko (talkspinout). Questions about the product website go to <a href="mailto:think2brief@gmail.com">think2brief@gmail.com</a>.',
@@ -40,32 +40,32 @@ export const en = {
     "s04.title": "Collection, transmission, and third parties",
     "s04.fact1Label": "Collected on a developer server",
     "s04.fact1Value": "None",
-    "s04.fact2Label": "Shared or sold to third parties",
-    "s04.fact2Value": "None",
+    "s04.fact2Label": "Sent to an external service",
+    "s04.fact2Value": "Google Drive, when you choose",
     "s04.fact3Label": "Analytics or ad tracking",
     "s04.fact3Value": "None",
-    "s04.fact4Label": "User accounts",
+    "s04.fact4Label": "Developer user accounts",
     "s04.fact4Value": "None",
     "s04.body":
-      "This table describes the Chrome extension. For the product website's use of analytics, see item 8. The current version does not call Google Drive, Notion, LLM APIs, or any other external data service. The developer does not collect, view, sell, or share with third parties any project you enter into the extension.",
+      "This table describes the Chrome extension. When you choose to save to or open from Google Drive, a Google OAuth token and the selected project file are sent to Google. Access is limited to files this app creates or that you explicitly select. No data is sent to Notion, an LLM API, or a developer server, and the developer does not collect, view, or sell your projects. See item 8 for website analytics.",
     "s05.title": "Chrome permissions",
     "s05.body":
-      "The extension requests no additional Chrome permissions. It has no access to your browsing history, the content of other tabs, your Google account, external files, or external servers.",
+      "The extension uses Chrome's <code>identity</code> permission and Google Drive's <code>drive.file</code> scope for Google account authentication. Permission is requested when you use a Drive feature, and does not allow the extension to browse your entire Drive or arbitrarily read files created by other apps. It cannot access your browsing history or the content of other tabs.",
     "s06.title": "Retention and deletion",
     "s06.body1":
       "Autosaved data remains in that browser until you run <b>Clear saved data</b> inside the extension, or clear the extension's data through Chrome.",
     "s06.body2":
-      "JSON, Markdown, or PDF files you save separately are not deleted by the extension's Clear saved data feature. You must delete those files yourself.",
+      "JSON, Markdown, or PDF files you save separately are not deleted by the extension's Clear saved data feature. Google Drive files are also not deleted when you disconnect Drive. You must delete those files yourself.",
     "s07.title": "Security and your choices",
     "s07.body":
-      "The current version does not transmit project data over the network, so there is no external transmission process. You are responsible for securing access to your device account, Chrome profile, and any exported files. On a shared device, we recommend not entering sensitive work content.",
+      "Project files are transmitted to Google over encrypted HTTPS only when you choose a Google Drive feature. The OAuth token is never placed in a URL, web storage, or a developer server; it is handled temporarily in browser memory during file selection. You are responsible for securing access to your device account, Chrome profile, Google account, and exported files.",
     "s08.title": "Product website",
     "s08.body":
       'The product introduction and this privacy policy are hosted on GitHub Pages. While you\'re visiting the website, GitHub may process technical information such as access logs, which is subject to the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>.',
     "s08.analytics":
       'This website uses Google Analytics 4 through <a href="https://policies.google.com/technologies/managing">Google Tag Manager</a> to understand visits and improve the site. This may process pages visited, feature-use events, device and browser information, an approximate region derived from the IP address, and cookies or similar identifiers. Project, card, and brief content entered in the Chrome extension is never included in website analytics. The information is sent to Google and is subject to the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>. You can limit collection through your browser cookie settings or the Google Analytics opt-out browser add-on. You can decline analytics on the consent screen shown on your first visit and change your choice anytime through “Analytics settings” in the footer. Google Tag Manager and Google Analytics are not loaded before you consent.',
     "s08.appSeparate":
-      "The Chrome extension itself operates separately from this website: it does not include Tag Manager and uses no analytics tools of any kind. The extension never includes project content or a unique project identifier in the URL when it opens this website.",
+      "The Chrome extension operates separately from this website: it does not include Tag Manager and uses no analytics tools. The dedicated Drive file-picker page at <code>/drive-picker/</code> also has no Tag Manager or analytics. Its URL never contains an OAuth token, project content, or a unique project identifier. It receives only a one-time handshake value and the extension origin; the token is sent by browser messaging only after the origin, popup window, and handshake value are verified.",
     "s09.title": "Future features and policy changes",
     "s09.body1":
       "If our data practices change, we will disclose the changed data types and purposes in advance through this privacy policy and inside the extension. We will not process any newly collected or used data before you explicitly consent. We will also update the Chrome Web Store's privacy disclosures before shipping any such change.",
