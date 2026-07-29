@@ -1,5 +1,5 @@
-// Generates a real, crawlable English snapshot of the site (site/en/,
-// site/en/privacy/) from the same Korean source HTML + the same EN
+// Generates real, crawlable English snapshots of the site (site/en/,
+// site/en/privacy/, site/en/updates/) from the same Korean source HTML + the same EN
 // dictionaries the client-side toggle uses. Single source of truth: this
 // script and site/assets/i18n.js apply the *same* data-i18n / data-i18n-en-src
 // / data-i18n-attr-* directives, just once at build time instead of on every
@@ -12,6 +12,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { en as homeEn } from "../site/assets/i18n-home.js";
 import { en as privacyEn } from "../site/assets/i18n-privacy.js";
+import { en as updatesEn } from "../site/assets/i18n-updates.js";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const SITE_URL = "https://talkspinout.github.io/think2brief";
@@ -30,6 +31,13 @@ const PAGES = [
     dict: privacyEn,
     koUrl: `${SITE_URL}/privacy/`,
     enUrl: `${SITE_URL}/en/privacy/`,
+  },
+  {
+    src: "site/updates/index.html",
+    dest: "site/en/updates/index.html",
+    dict: updatesEn,
+    koUrl: `${SITE_URL}/updates/`,
+    enUrl: `${SITE_URL}/en/updates/`,
   },
 ];
 
@@ -70,14 +78,6 @@ const rebaseAssetPaths = (document) => {
       if (value) el.setAttribute(attr, rebaseAssetPath(value));
     }
   });
-};
-
-// /updates/ has no English snapshot (site/en/updates/ doesn't exist), unlike
-// /privacy/ which is mirrored under site/en/privacy/. Left alone, the source
-// page's "./updates/" link would resolve inside site/en/ and 404 — point it
-// back at the shared, Korean-only updates page instead.
-const redirectUnmirroredPages = (document) => {
-  document.querySelectorAll('a[href="./updates/"]').forEach((el) => el.setAttribute("href", "../updates/"));
 };
 
 const stripToggleChrome = (document, koUrl) => {
@@ -132,7 +132,6 @@ for (const page of PAGES) {
 
   applyDictionary(document, page.dict);
   rebaseAssetPaths(document);
-  redirectUnmirroredPages(document);
   stripToggleChrome(document, page.koUrl);
   setCanonicalAndLocale(document, page);
   stripBuildArtifacts(document);

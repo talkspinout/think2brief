@@ -6,12 +6,13 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (path) => readFile(resolve(root, path), "utf8");
 
-const [home, privacy, updates, enHome, enPrivacy, styles, workflow, i18n, i18nHome, i18nPrivacy, i18nUpdates, sitemap] = await Promise.all([
+const [home, privacy, updates, enHome, enPrivacy, enUpdates, styles, workflow, i18n, i18nHome, i18nPrivacy, i18nUpdates, sitemap] = await Promise.all([
   read("site/index.html"),
   read("site/privacy/index.html"),
   read("site/updates/index.html"),
   read("site/en/index.html"),
   read("site/en/privacy/index.html"),
+  read("site/en/updates/index.html"),
   read("site/assets/styles.css"),
   read(".github/workflows/deploy-pages.yml"),
   read("site/assets/i18n.js"),
@@ -177,7 +178,7 @@ assert.match(i18nPrivacy, /None/);
 // GTM은 마케팅 사이트에만 설치한다 — 확장 프로그램은 여전히 분석 도구를
 // 쓰지 않는다는 걸 스토어에 이미 그렇게 제출했다. 정책 문서가 "확장 프로그램"과
 // "웹사이트"를 명확히 구분해서 진술하는지 고정해 둔다.
-for (const [label, page] of [["home", home], ["privacy", privacy], ["updates", updates], ["404", notFound], ["en/home", enHome], ["en/privacy", enPrivacy]]) {
+for (const [label, page] of [["home", home], ["privacy", privacy], ["updates", updates], ["404", notFound], ["en/home", enHome], ["en/privacy", enPrivacy], ["en/updates", enUpdates]]) {
   assert.match(page, /analytics-consent\.js/, `${label}: missing the analytics consent controller`);
   assert.doesNotMatch(page, /googletagmanager\.com/, `${label}: GTM must not load before consent`);
 }
@@ -200,6 +201,7 @@ assert.match(i18nPrivacy, /operates separately from this website/, "i18n-privacy
 // 되돌아가지 않도록 고정해 둔다.
 assert.doesNotMatch(updates, /<meta name="robots" content="noindex" \/>/, "updates: should be indexable now that it's published");
 assert.match(sitemap, /\/updates\//, "sitemap: missing the updates page");
+assert.match(sitemap, /\/en\/updates\//, "sitemap: missing the English updates page");
 assert.match(home, /href="\.\/updates\/"/, "home: missing the updates nav link");
 assert.match(privacy, /href="\.\.\/updates\/"/, "privacy: missing the updates nav link");
 
@@ -219,7 +221,7 @@ for (const [label, page] of [["home", home], ["privacy", privacy], ["updates", u
 // snapshot with its own lang/canonical/og:locale, generated from the same
 // Korean HTML + EN dictionaries the client-side toggle uses (single source
 // of truth). `npm run verify` builds it first; see package.json.
-for (const [label, page, base] of [["en/home", enHome, "https://talkspinout.github.io/think2brief/en/"], ["en/privacy", enPrivacy, "https://talkspinout.github.io/think2brief/en/privacy/"]]) {
+for (const [label, page, base] of [["en/home", enHome, "https://talkspinout.github.io/think2brief/en/"], ["en/privacy", enPrivacy, "https://talkspinout.github.io/think2brief/en/privacy/"], ["en/updates", enUpdates, "https://talkspinout.github.io/think2brief/en/updates/"]]) {
   assert.match(page, /<html lang="en">/, `${label}: must render as lang="en"`);
   assert.doesNotMatch(page, /data-i18n/, `${label}: must not leak build-time data-i18n* directives`);
   assert.doesNotMatch(page, /<script[^>]*\/assets\/i18n/, `${label}: static snapshot needs no toggle script`);
@@ -231,22 +233,18 @@ for (const [label, page, base] of [["en/home", enHome, "https://talkspinout.gith
 assert.match(enHome, /Install from the Chrome Web Store/);
 assert.match(enHome, /product\/blank-board-start-en\.png/);
 assert.match(enPrivacy, /Chrome extension\.<\/p>|Chrome extension\./);
-
-// /updates/ has no English snapshot (unlike /privacy/, which is mirrored
-// under site/en/privacy/) — a naive path rebase would leave the nav link
-// pointing at the nonexistent site/en/updates/. Lock in the redirect back
-// to the shared, Korean-only updates page.
-assert.match(enHome, /href="\.\.\/updates\/"/, "en/home: updates link must point out of /en/ to the shared page");
-assert.doesNotMatch(enHome, /href="\.\/updates\/"/, "en/home: updates link must not resolve inside /en/");
+assert.match(enUpdates, /English support added \(v1\.1\.0\)/);
+assert.match(enHome, /href="\.\/updates\/"/, "en/home: updates link must stay inside /en/");
+assert.match(enPrivacy, /href="\.\.\/updates\/"/, "en/privacy: updates link must resolve to /en/updates/");
 
 // KO 원본과 EN 스냅샷은 서로 같은 hreflang 대체 링크 세트를 들고 있어야
 // 한다 — 한쪽만 갱신되고 잊히는 걸 막기 위한 고정.
-for (const [label, page] of [["home", home], ["en/home", enHome], ["privacy", privacy], ["en/privacy", enPrivacy]]) {
+for (const [label, page] of [["home", home], ["en/home", enHome], ["privacy", privacy], ["en/privacy", enPrivacy], ["updates", updates], ["en/updates", enUpdates]]) {
   assert.match(page, /hreflang="ko"/, `${label}: missing hreflang=ko`);
   assert.match(page, /hreflang="en"/, `${label}: missing hreflang=en`);
   assert.match(page, /hreflang="x-default"/, `${label}: missing hreflang=x-default`);
 }
 
-assert.doesNotMatch(`${enHome}\n${enPrivacy}`, /http:\/\//);
+assert.doesNotMatch(`${enHome}\n${enPrivacy}\n${enUpdates}`, /http:\/\//);
 
 console.log("Think2Brief 사이트 검증 통과");
