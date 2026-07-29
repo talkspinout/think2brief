@@ -41,6 +41,10 @@ for (const path of [
   "site/assets/store/screenshot-2-capture-en.png",
   "site/assets/store/screenshot-3-review-en.png",
   "site/assets/store/screenshot-4-finish-en.png",
+  "site/assets/store/screenshot-1-start-ko.png",
+  "site/assets/store/screenshot-2-capture-ko.png",
+  "site/assets/store/screenshot-3-review-ko.png",
+  "site/assets/store/screenshot-4-finish-ko.png",
   "site/404.html",
   "site/robots.txt",
   "site/sitemap.xml",
@@ -64,9 +68,15 @@ assert.match(home, /Think2Brief — Marketing/);
 assert.match(home, /href="https:\/\/chromewebstore\.google\.com\/detail\/Think2Brief/);
 assert.match(home, /Chrome 웹스토어에서 설치하기/);
 assert.match(home, /href="\.\/privacy\/"/);
-assert.match(home, /회원가입 없음/);
-assert.doesNotMatch(home, /Google Drive 연결|Notion 연결|지금 설치/);
+assert.match(home, /Think2Brief 계정 불필요/);
+assert.match(home, /개발자 서버 전송 없음/);
+assert.match(home, /로컬 저장 · 선택 시 Drive/);
+assert.doesNotMatch(home, /외부 서버 전송 없음/);
+assert.doesNotMatch(home, /Notion 연결|지금 설치/);
 assert.doesNotMatch(home, /출시 준비 중/);
+assert.match(updates, /Google Drive 저장·열기 추가 \(v1\.2\.2\)/);
+assert.match(i18nUpdates, /Google Drive save and open added \(v1\.2\.2\)/);
+assert.doesNotMatch(`${updates}\n${i18nUpdates}`, /v1\.2\.1/);
 
 // 제품 화면 3장은 실제 앱 스크린샷(PNG)이어야 하며, 새 창으로 열리는
 // 원본 보기 링크 없이 페이지 안에서 바로 보여야 한다.
@@ -83,7 +93,8 @@ assert.doesNotMatch(home, /좋은 브리프는 생각의 흔적을 남깁니다/
 assert.doesNotMatch(home, /당신의 브리프는[\s\S]{0,20}당신의 브라우저에 머뭅니다/);
 assert.doesNotMatch(home, /생각을 브리프로, 지금 바로 정리해 보세요/);
 assert.match(home, /흩어진 생각을, 지금 브리프로 정리해 보세요/);
-assert.match(home, /브라우저에만 저장되고/);
+assert.match(home, /브라우저에 자동 저장하고/);
+assert.match(home, /Google Drive에 저장하거나 불러옵니다/);
 assert.match(home, /자신만의[\s\S]{0,20}논리로 이어지는지 확인합니다/);
 
 // PRODUCT IN ACTION과 HOW IT WORKS는 내용이 겹쳐 하나로 합쳤다 —
@@ -126,6 +137,8 @@ assert.match(privacy, /사용자 선택 시 Google Drive/);
 assert.match(privacy, /Notion, LLM API 또는 개발자 서버/);
 assert.match(privacy, /\/drive-picker\//);
 assert.match(privacy, /OAuth 인증 토큰은 URL/);
+assert.match(privacy, /Chrome 웹스토어 사용자 데이터 정책과 Limited Use 요구사항/);
+assert.match(i18nPrivacy, /Chrome Web Store User Data Policy, including the Limited Use requirements/);
 
 assert.match(styles, /@media \(max-width: 720px\)/);
 assert.match(styles, /@media print/);
@@ -256,6 +269,7 @@ for (const [label, page, base] of [["en/home", enHome, "https://talkspinout.gith
 assert.match(enHome, /Install from the Chrome Web Store/);
 assert.match(enHome, /product\/blank-board-start-en\.png/);
 assert.match(enPrivacy, /Chrome extension\.<\/p>|Chrome extension\./);
+assert.match(enUpdates, /Google Drive save and open added \(v1\.2\.2\)/);
 assert.match(enUpdates, /English support added \(v1\.1\.0\)/);
 assert.match(enHome, /href="\.\/updates\/"/, "en/home: updates link must stay inside /en/");
 assert.match(enPrivacy, /href="\.\.\/updates\/"/, "en/privacy: updates link must resolve to /en/updates/");

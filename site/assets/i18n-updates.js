@@ -10,6 +10,13 @@ export const en = {
     "updates.title": "Update notes",
     "updates.description":
       "A short record of what changed in Think2Brief. Written around what you'd actually notice, not the commit log.",
+    "update.v122.title": "Google Drive save and open added (v1.2.2)",
+    "update.v122.item1":
+      "Save projects to Google Drive, open them again, and choose the destination folder yourself.",
+    "update.v122.item2":
+      "Check for Drive file conflicts, disconnect a project, or reconnect it when needed.",
+    "update.v122.item3":
+      "Projects still autosave in your browser. Only the project file you select is sent to Google when you choose a Drive action.",
     "update.v110.title": "English support added (v1.1.0)",
     "update.v110.item1":
       "The Chrome extension now supports English. Switch languages anytime from the toggle in the top-right corner.",
