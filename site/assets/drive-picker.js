@@ -77,10 +77,16 @@
     await loadPickerScript();
     await loadPickerModule();
 
+    // setIncludeFolders(true) is required for FOLDERS-view double-click
+    // navigation into subfolders to actually populate their contents and
+    // for the Select button to react to the folder you've navigated into —
+    // without it, drilling into a folder shows nothing and Select stays
+    // disabled.
     const isFolderMode = mode === "folders";
     const view = isFolderMode
       ? new window.google.picker.DocsView(window.google.picker.ViewId.FOLDERS)
         .setSelectFolderEnabled(true)
+        .setIncludeFolders(true)
         .setMode(window.google.picker.DocsViewMode.LIST)
       : new window.google.picker.DocsView(window.google.picker.ViewId.DOCS)
         .setIncludeFolders(true)
