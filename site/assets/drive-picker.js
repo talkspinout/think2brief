@@ -72,14 +72,19 @@
     });
   });
 
-  const openPicker = async ({ developerKey, appId }) => {
+  const openPicker = async ({ developerKey, appId, mode }) => {
     setStatus("Google Drive 탐색기를 여는 중입니다…");
     await loadPickerScript();
     await loadPickerModule();
 
-    const view = new window.google.picker.DocsView(window.google.picker.ViewId.DOCS)
-      .setIncludeFolders(true)
-      .setMode(window.google.picker.DocsViewMode.LIST);
+    const isFolderMode = mode === "folders";
+    const view = isFolderMode
+      ? new window.google.picker.DocsView(window.google.picker.ViewId.FOLDERS)
+        .setSelectFolderEnabled(true)
+        .setMode(window.google.picker.DocsViewMode.LIST)
+      : new window.google.picker.DocsView(window.google.picker.ViewId.DOCS)
+        .setIncludeFolders(true)
+        .setMode(window.google.picker.DocsViewMode.LIST);
 
     const picker = new window.google.picker.PickerBuilder()
       .setOAuthToken(accessToken)
@@ -97,7 +102,9 @@
       .build();
 
     picker.setVisible(true);
-    setStatus("Google Drive에서 Think2Brief 프로젝트 파일을 선택하세요.");
+    setStatus(isFolderMode
+      ? "Google Drive에서 저장할 폴더를 선택하세요."
+      : "Google Drive에서 Think2Brief 프로젝트 파일을 선택하세요.");
   };
 
   closeButton.addEventListener("click", () => finish("cancelled"));
@@ -128,6 +135,7 @@
       || data.token.length < 20
       || typeof data.developerKey !== "string"
       || typeof data.appId !== "string"
+      || (data.mode !== undefined && data.mode !== "files" && data.mode !== "folders")
     ) {
       fail("INVALID_INITIALIZATION", "인증 정보를 확인하지 못했습니다. 창을 닫고 다시 시도해 주세요.");
       return;
