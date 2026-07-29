@@ -51,6 +51,8 @@ export const en = {
     "s05.title": "Chrome permissions",
     "s05.body":
       "The extension uses Chrome's <code>identity</code> permission and Google Drive's <code>drive.file</code> scope for Google account authentication. Permission is requested when you use a Drive feature, and does not allow the extension to browse your entire Drive or arbitrarily read files created by other apps. It cannot access your browsing history or the content of other tabs.",
+    "s05.limitedUse":
+      "Use and transfer of information received from Google APIs will adhere to the Chrome Web Store User Data Policy, including the Limited Use requirements.",
     "s06.title": "Retention and deletion",
     "s06.body1":
       "Autosaved data remains in that browser until you run <b>Clear saved data</b> inside the extension, or clear the extension's data through Chrome.",
