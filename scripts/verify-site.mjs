@@ -230,6 +230,9 @@ assert.match(drivePickerScript, /event\.origin !== extensionOrigin/);
 assert.match(drivePickerScript, /event\.source !== window\.opener/);
 assert.match(drivePickerScript, /data\?\.state !== state/);
 assert.match(drivePickerScript, /postMessage/);
+assert.match(drivePickerScript, /\.setOrigin\(window\.location\.origin\)/);
+assert.doesNotMatch(drivePickerScript, /finish\(["']error["']/);
+assert.match(drivePickerScript, /오류 코드:/);
 assert.match(drivePickerStyles, /picker-shell/);
 
 // Chrome 웹스토어 심사가 끝난 뒤 업데이트 노트를 공개하기로 했다 —

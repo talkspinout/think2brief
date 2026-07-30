@@ -41,8 +41,14 @@
   };
 
   const fail = (code, message) => {
-    setStatus(message);
-    finish("error", { code });
+    // Keep the popup open on initialization failures. Closing it here hid
+    // the only useful diagnostic and made file and folder mode both appear
+    // to "flash and disappear." The user can close the retained error page
+    // with the button below, and the extension's initialized handshake no
+    // longer times out while the message is visible.
+    accessToken = null;
+    if (readyInterval) window.clearInterval(readyInterval);
+    setStatus(`${message} (오류 코드: ${code})`);
   };
 
   const loadPickerScript = () => new Promise((resolve, reject) => {
@@ -100,6 +106,11 @@
       .setOAuthToken(accessToken)
       .setDeveloperKey(developerKey)
       .setAppId(appId)
+      // The Picker UI runs in Google's iframe, while this bridge was opened
+      // by a chrome-extension:// window. Pinning the dialog origin to the
+      // actual top-level bridge page prevents Picker from inferring the
+      // extension opener as its web origin.
+      .setOrigin(window.location.origin)
       .addView(view)
       .setCallback((data) => {
         if (data.action === window.google.picker.Action.PICKED && data.docs?.[0]?.id) {
