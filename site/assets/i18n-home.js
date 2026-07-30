@@ -19,7 +19,7 @@ export const en = {
     "hero.trustList.ariaLabel": "Current product characteristics",
     "hero.trust.noSignup": "No Think2Brief account",
     "hero.trust.noServer": "Nothing sent to a developer server",
-    "hero.trust.localStorage": "Local storage · Drive is optional",
+    "hero.trust.localStorage": "Store locally or in Google Drive",
     "preview.ariaLabel": "Example Think2Brief workspace",
     "preview.workBoard": "Work board",
     "preview.campaignBrief": "Campaign brief",
