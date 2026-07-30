@@ -70,7 +70,7 @@ assert.match(home, /Chrome 웹스토어에서 설치하기/);
 assert.match(home, /href="\.\/privacy\/"/);
 assert.match(home, /Think2Brief 계정 불필요/);
 assert.match(home, /개발자 서버 전송 없음/);
-assert.match(home, /로컬 저장 · 선택 시 Drive/);
+assert.match(home, /로컬 저장 · Drive는 선택/);
 assert.doesNotMatch(home, /외부 서버 전송 없음/);
 assert.doesNotMatch(home, /Notion 연결|지금 설치/);
 assert.doesNotMatch(home, /출시 준비 중/);
@@ -101,7 +101,7 @@ assert.match(home, /자신만의[\s\S]{0,20}논리로 이어지는지 확인합�
 // 별개 섹션으로 되돌아가지 않도록 고정한다.
 assert.doesNotMatch(home, /PRODUCT IN ACTION/);
 assert.equal((home.match(/HOW IT WORKS/g) || []).length, 1);
-assert.match(home, /카드 한 장에서[\s\S]{0,20}네 단계입니다/);
+assert.match(home, /카드 한 장에서[\s\S]{0,20}이렇게 연결됩니다/);
 for (const step of ["질문 구조 선택", "판단과 근거 기록", "연결 확인", "최종 브리프 완성"]) {
   assert.match(home, new RegExp(step));
 }

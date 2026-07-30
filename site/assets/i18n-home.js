@@ -19,7 +19,7 @@ export const en = {
     "hero.trustList.ariaLabel": "Current product characteristics",
     "hero.trust.noSignup": "No Think2Brief account",
     "hero.trust.noServer": "Nothing sent to a developer server",
-    "hero.trust.localStorage": "Local storage · optional Drive",
+    "hero.trust.localStorage": "Local storage · Drive is optional",
     "preview.ariaLabel": "Example Think2Brief workspace",
     "preview.workBoard": "Work board",
     "preview.campaignBrief": "Campaign brief",
@@ -48,11 +48,11 @@ export const en = {
       "There's no single right answer for consumer behavior or market change. Think2Brief doesn't score your work against one marketing framework or predict its odds of success.",
     "principle.quote":
       "It checks whether the goal, evidence, strategy, and activities you've written hold together as your own unbroken logic.",
-    "howItWorks.title": "From a single card<br />to a final brief, in four steps.",
+    "howItWorks.title": "From a single card<br />to a final brief — here's how it connects.",
     "howItWorks.body":
       "There's no single fixed planning method. Choose a question structure that fits the situation, stack decisions and evidence as cards, check the connections, and finish with a brief.",
     "step1.title": "Choose a question structure",
-    "step1.body": "Pick a starting point that fits the work — a blank board, a quick brief, positioning, and more.",
+    "step1.body": "Pick a starting point that fits the work — Strategic Brief, Strategy Development, Execution Plan, or Blank Board.",
     "step1.alt":
       "Think2Brief's start screen: Blank Board is selected among Strategic Brief, Strategy Development, Execution Plan, and Blank Board, with a blank-board template card chosen below it",
     "step2.title": "Record decisions and evidence",
@@ -74,7 +74,7 @@ export const en = {
       "Projects autosave in your browser. When you choose, you can save or open selected projects in Google Drive. Nothing is sent to the developer.",
     "feature1.link": "Read the privacy policy",
     "feature2.title": "Markdown & PDF export",
-    "feature2.body": "Export a finished brief straight to a document or a printable file.",
+    "feature2.body": "Export a finished brief as a document, or print it directly.",
     "feature3.title": "Every feature is free right now",
     "feature3.body":
       "Use every core feature with no Think2Brief sign-up or payment. Only the optional Drive integration requires Google sign-in.",
