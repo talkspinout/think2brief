@@ -70,7 +70,7 @@ assert.match(home, /Chrome 웹스토어에서 설치하기/);
 assert.match(home, /href="\.\/privacy\/"/);
 assert.match(home, /Think2Brief 계정 불필요/);
 assert.match(home, /개발자 서버 전송 없음/);
-assert.match(home, /로컬 저장 · Drive는 선택/);
+assert.match(home, /로컬 및 Google Drive 저장 가능/);
 assert.doesNotMatch(home, /외부 서버 전송 없음/);
 assert.doesNotMatch(home, /Notion 연결|지금 설치/);
 assert.doesNotMatch(home, /출시 준비 중/);
