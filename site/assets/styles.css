@@ -1091,7 +1091,7 @@ a {
     gap: 10px;
   }
 
-  .site-nav > a:not(.nav-contact) {
+  .site-nav > a:not(.nav-contact):not(.nav-updates) {
     display: none;
   }
 
